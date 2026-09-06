@@ -1,13 +1,14 @@
-# Campo Internet — lesvoorbeeld HTML, CSS en JavaScript
+# Campo Internet : lesvoorbeeld HTML, CSS en JavaScript
 
-Complete portfoliosite voor GitHub Pages. De mapnaam is bewust `campointernet.github.io`, gelijk aan de beoogde repository.
+Complete portfoliosite voor GitHub Pages.
+De mapnaam is bewust `campointernet.github.io`, gelijk aan de beoogde repository.
 
 ## Pagina's
 
 - `index.html` — home / company
-- `whoami.html` — verplichte Who am I-pagina
+- `whoami.html` — Who am I-pagina
 - `projects.html` — projectenoverzicht met dynamisch filter
-- `journal.html` — semantische blog-/journalpagina
+- `journal.html` — semantische blogpagina
 - `demo.html` — klassikale demo van statisch, dynamisch, Flexbox en border-box
 
 ## Wat je in de les kunt laten zien
@@ -25,7 +26,8 @@ Open de map in VS Code en start een lokale webserver, bijvoorbeeld Live Server. 
 
 ## Publiceren
 
-Plaats de inhoud van deze map in de root van de publieke repository `campointernet/campointernet.github.io`. Activeer GitHub Pages via **Settings > Pages**, branch `main`, map `/ (root)`.
+Plaats de inhoud van deze map in de root van de publieke repository `campointernet/campointernet.github.io`.
+Activeer GitHub Pages via **Settings > Pages**, branch `main`, map `/ (root)`.
 
 ## Eindcontrole
 

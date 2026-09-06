@@ -1,26 +1,173 @@
 <!doctype html>
 <html lang="nl">
-<head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Interactieve lesdemo over statisch, dynamisch, Flexbox en het box-model."><meta name="theme-color" content="#071521">
-  <meta property="og:type" content="website"><meta property="og:title" content="Live demo | Campo Internet"><meta property="og:description" content="Flexbox, border-box en JavaScript zichtbaar uitgelegd."><meta property="og:image" content="https://campointernet.github.io/images/social-preview.png">
-  <title>Live demo | Campo Internet</title><link rel="icon" href="images/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  <a class="skip-link" href="#hoofdinhoud">Ga naar de inhoud</a>
-  <header class="site-header"><div class="container header-inner"><a class="brand" href="index.html" aria-label="Campo Internet, home"><img src="images/logo.svg" alt="" width="40" height="40"><span>Campo Internet</span></a><nav aria-label="Hoofdnavigatie"><ul class="nav-list"><li><a href="index.html">Home</a></li><li><a href="whoami.html">Who am I</a></li><li><a href="projects.html">Projects</a></li><li><a href="journal.html">Journal</a></li><li><a aria-current="page" href="demo.html">Live demo</a></li></ul></nav></div></header>
-  <main id="hoofdinhoud" class="container page-main">
-    <header class="page-intro"><p class="eyebrow">Hoorcollege in de browser</p><h1>Van statisch naar dynamisch.</h1><p class="lead">HTML beschrijft de inhoud, CSS bepaalt de presentatie en JavaScript kan de toestand van de pagina veranderen.</p></header>
-    <div class="demo-stack">
-      <section class="demo-panel" aria-labelledby="statisch"><p class="eyebrow">01 · Statisch</p><h2 id="statisch">De inhoud staat al in de HTML</h2><p>Deze titel en tekst blijven zichtbaar wanneer JavaScript wordt uitgeschakeld. De browser leest de HTML en past daarna de CSS toe.</p><pre class="code-sample"><code>&lt;h2&gt;De inhoud staat al in de HTML&lt;/h2&gt;
-&lt;p&gt;Dit is statische inhoud.&lt;/p&gt;</code></pre></section>
-      <section class="demo-panel" aria-labelledby="flexbox"><p class="eyebrow">02 · Flexbox</p><h2 id="flexbox">Eén richting, meerdere verdelingen</h2><p>De container heeft <code>display: flex</code>. Kies hoe de vrije ruimte over de hoofdas wordt verdeeld.</p><div class="flex-controls"><button class="filter-button" type="button" data-justify="flex-start" aria-pressed="true">flex-start</button><button class="filter-button" type="button" data-justify="center" aria-pressed="false">center</button><button class="filter-button" type="button" data-justify="space-between" aria-pressed="false">space-between</button><button class="filter-button" type="button" data-justify="space-around" aria-pressed="false">space-around</button></div><div class="flex-stage" id="flex-stage"><div class="flex-item">A</div><div class="flex-item">B</div><div class="flex-item">C</div></div><p class="status" id="flex-status" aria-live="polite">justify-content: flex-start</p></section>
-      <section class="demo-panel" aria-labelledby="boxmodel"><p class="eyebrow">03 · Box-model</p><h2 id="boxmodel">Dezelfde CSS-breedte, een ander totaal</h2><p>Beide blokken hebben <code>width: 280px</code>, <code>padding: 32px</code> en <code>border: 16px</code>. Bij content-box komen padding en border erbij; border-box houdt het totaal op 280 px.</p><div class="box-row"><div><div class="measure-box content-box-demo"><strong>content-box</strong><br>breedte geldt alleen voor content</div><span class="measure-label" id="content-measure">totaal meten…</span></div><div><div class="measure-box border-box-demo"><strong>border-box</strong><br>padding en border tellen mee</div><span class="measure-label" id="border-measure">totaal meten…</span></div></div></section>
-      <section class="demo-panel" aria-labelledby="dynamisch"><p class="eyebrow">04 · Dynamisch</p><h2 id="dynamisch">JavaScript verandert de toestand</h2><p>De knop past de waarde in de DOM aan. De oorspronkelijke HTML verandert niet op de server; alleen de geladen pagina verandert.</p><p class="dynamic-number" id="counter" aria-live="polite">0</p><button class="control-button" id="counter-button" type="button">Verhoog teller</button> <button class="filter-button" id="reset-button" type="button">Reset</button><pre class="code-sample"><code>button.addEventListener("click", () =&gt; {
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Interactieve lesdemo over statisch, dynamisch, Flexbox en het box-model."
+    />
+    <meta name="theme-color" content="#071521" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Live demo | Campo Internet" />
+    <meta
+      property="og:description"
+      content="Flexbox, border-box en JavaScript zichtbaar uitgelegd."
+    />
+    <meta
+      property="og:image"
+      content="https://campointernet.github.io/images/social-preview.png"
+    />
+    <title>Live demo | HTML & CSS</title>
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#hoofdinhoud">Ga naar de inhoud</a>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="Campo Internet, home"
+          ><img src="images/logo.svg" alt="" width="40" height="40" /><span
+            >Campo Internet</span
+          ></a
+        >
+        <nav aria-label="Hoofdnavigatie">
+          <ul class="nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="whoami.html">Who am I</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="journal.html">Journal</a></li>
+            <li><a aria-current="page" href="demo.html">Live demo</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main id="hoofdinhoud" class="container page-main">
+      <header class="page-intro">
+        <p class="eyebrow">Hoorcollege materiaal</p>
+        <h1>Van statisch naar dynamisch.</h1>
+        <p class="lead">
+          HTML beschrijft de inhoud, CSS bepaalt de presentatie en JavaScript
+          kan de toestand van de pagina veranderen.
+        </p>
+      </header>
+      <div class="demo-stack">
+        <section class="demo-panel" aria-labelledby="statisch">
+          <p class="eyebrow">01 · Statisch</p>
+          <h2 id="statisch">De inhoud staat al in de HTML</h2>
+          <p>
+            Deze titel en tekst blijven zichtbaar wanneer JavaScript wordt
+            uitgeschakeld. De browser leest de HTML en past daarna de CSS toe.
+          </p>
+          <pre
+            class="code-sample"
+          ><code>&lt;h2&gt;De inhoud staat al in de HTML&lt;/h2&gt;&lt;p&gt;Dit is statische inhoud.&lt;/p&gt;</code></pre>
+        </section>
+        <section class="demo-panel" aria-labelledby="flexbox">
+          <p class="eyebrow">02 · Flexbox</p>
+          <h2 id="flexbox">Eén richting, meerdere verdelingen</h2>
+          <p>
+            De container heeft <code>display: flex</code>. Kies hoe de vrije
+            ruimte over de hoofdas wordt verdeeld.
+          </p>
+          <div class="flex-controls">
+            <button
+              class="filter-button"
+              type="button"
+              data-justify="flex-start"
+              aria-pressed="true"
+            >
+              flex-start</button
+            ><button
+              class="filter-button"
+              type="button"
+              data-justify="center"
+              aria-pressed="false"
+            >
+              center</button
+            ><button
+              class="filter-button"
+              type="button"
+              data-justify="space-between"
+              aria-pressed="false"
+            >
+              space-between</button
+            ><button
+              class="filter-button"
+              type="button"
+              data-justify="space-around"
+              aria-pressed="false"
+            >
+              space-around
+            </button>
+          </div>
+          <div class="flex-stage" id="flex-stage">
+            <div class="flex-item">A</div>
+            <div class="flex-item">B</div>
+            <div class="flex-item">C</div>
+          </div>
+          <p class="status" id="flex-status" aria-live="polite">
+            justify-content: flex-start
+          </p>
+        </section>
+        <section class="demo-panel" aria-labelledby="boxmodel">
+          <p class="eyebrow">03 · Box-model</p>
+          <h2 id="boxmodel">Dezelfde CSS-breedte, een ander totaal</h2>
+          <p>
+            Beide blokken hebben <code>width: 280px</code>,
+            <code>padding: 32px</code> en <code>border: 16px</code>. Bij
+            content-box komen padding en border erbij; border-box houdt het
+            totaal op 280 px.
+          </p>
+          <div class="box-row">
+            <div>
+              <div class="measure-box content-box-demo">
+                <strong>content-box</strong><br />breedte geldt alleen voor
+                content
+              </div>
+              <span class="measure-label" id="content-measure"
+                >totaal meten…</span
+              >
+            </div>
+            <div>
+              <div class="measure-box border-box-demo">
+                <strong>border-box</strong><br />padding en border tellen mee
+              </div>
+              <span class="measure-label" id="border-measure"
+                >totaal meten…</span
+              >
+            </div>
+          </div>
+        </section>
+        <section class="demo-panel" aria-labelledby="dynamisch">
+          <p class="eyebrow">04 · Dynamisch</p>
+          <h2 id="dynamisch">JavaScript verandert de toestand</h2>
+          <p>
+            De knop past de waarde in de DOM aan. De oorspronkelijke HTML
+            verandert niet op de server; alleen de geladen pagina verandert.
+          </p>
+          <p class="dynamic-number" id="counter" aria-live="polite">0</p>
+          <button class="control-button" id="counter-button" type="button">
+            Verhoog teller
+          </button>
+          <button class="filter-button" id="reset-button" type="button">
+            Reset
+          </button>
+          <pre
+            class="code-sample"
+          ><code>button.addEventListener("click", () =&gt; {
   count += 1;
   output.textContent = count;
-});</code></pre></section>
-    </div>
-  </main>
-  <footer class="site-footer"><div class="container footer-inner"><p><strong>Campo Internet</strong><br>Company and Projects</p><p>Den Haag · <span data-current-year>2026</span></p></div></footer><script src="js/site.js" defer></script>
-</body></html>
+});</code></pre>
+        </section>
+      </div>
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p><strong>Campo Internet</strong><br />Company and Projects</p>
+        <p>Den Haag · <span data-current-year>2026</span></p>
+      </div>
+    </footer>
+    <script src="js/site.js" defer></script>
+  </body>
+</html>
