@@ -165,6 +165,18 @@ document.querySelectorAll("[data-layout]").forEach((button) => {
     // Toon beide actuele eigenschappen; aria-live leest de wijziging voor.
     const css = getComputedStyle(stage);
     const vertical = layout === "grid" ? "align-content" : "align-items";
+    // Werk ook het zichtbare CSS-voorbeeld bij; textContent houdt de code gewone tekst.
+    const code = document.querySelector("#flex-code");
+    if (layout === "flex" && code) {
+      code.textContent = `.flex-stage {
+  display: flex; /* Zet de blokken naast elkaar. */
+  flex-direction: row; /* De hoofdas loopt horizontaal. */
+  justify-content: ${css.justifyContent}; /* Horizontale verdeling. */
+  align-items: ${css.alignItems}; /* Verticale uitlijning. */
+  gap: 0.8rem; /* Ruimte tussen de blokken. */
+  min-height: 10rem; /* Extra hoogte maakt verticaal uitlijnen zichtbaar. */
+}`;
+    }
     status.textContent =
       "justify-content: " +
       css.justifyContent +

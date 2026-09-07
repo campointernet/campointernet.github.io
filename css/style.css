@@ -75,7 +75,8 @@ h1 {
   font-size: clamp(3rem, 8vw, 6.7rem);
 }
 h2 {
-  /* Schaalt met 4vw, maar blijft tussen 2rem en 3.5rem. */  font-size: clamp(2rem, 4vw, 3.5rem);
+  /* Schaalt met 4vw, maar blijft tussen 2rem en 3.5rem. */
+  font-size: clamp(2rem, 4vw, 3.5rem);
 }
 h3 {
   font-size: 1.35rem;
@@ -186,7 +187,8 @@ button {
 .lead {
   max-width: 47rem;
   color: var(--muted);
-  /* Schaalt met 2vw, maar blijft tussen 1.12rem en 1.38rem. */  font-size: clamp(1.12rem, 2vw, 1.38rem);
+  /* Schaalt met 2vw, maar blijft tussen 1.12rem en 1.38rem. */
+  font-size: clamp(1.12rem, 2vw, 1.38rem);
 }
 .hero-shell .lead {
   color: #b9ccd4;
@@ -284,7 +286,8 @@ button {
   font-size: 0.85rem;
 }
 .section {
-  /* Schaalt met 8vw, maar blijft tussen 4rem en 7rem. */  padding-block: clamp(4rem, 8vw, 7rem);
+  /* Schaalt met 8vw, maar blijft tussen 4rem en 7rem. */
+  padding-block: clamp(4rem, 8vw, 7rem);
 }
 /* Het plusteken selecteert een section die direct na een andere section staat. */
 .section + .section {
@@ -342,7 +345,8 @@ button {
   border-radius: 99rem;
 }
 .page-main {
-  /* Schaalt met 8vw, maar blijft tussen 3.5rem en 7rem. */  padding-block: clamp(3.5rem, 8vw, 7rem);
+  /* Schaalt met 8vw, maar blijft tussen 3.5rem en 7rem. */
+  padding-block: clamp(3.5rem, 8vw, 7rem);
   /* vh is 1% van de viewporthoogte; dit geeft de inhoud minstens 65% van die hoogte. */
   min-height: 65vh;
 }
@@ -467,7 +471,8 @@ button {
 }
 .journal-item h2 {
   margin-bottom: 0.6rem;
-  /* Schaalt met 3vw, maar blijft tussen 1.45rem en 2.2rem. */  font-size: clamp(1.45rem, 3vw, 2.2rem);
+  /* Schaalt met 3vw, maar blijft tussen 1.45rem en 2.2rem. */
+  font-size: clamp(1.45rem, 3vw, 2.2rem);
 }
 .journal-item h2 a {
   text-decoration: none;
@@ -481,13 +486,15 @@ button {
   gap: 3.5rem;
 }
 .demo-panel {
-  /* Schaalt met 3vw, maar blijft tussen 1.2rem en 2rem. */  padding: clamp(1.2rem, 3vw, 2rem);
+  /* Schaalt met 3vw, maar blijft tussen 1.2rem en 2rem. */
+  padding: clamp(1.2rem, 3vw, 2rem);
   background: var(--paper-strong);
   border: 1px solid var(--line);
   border-radius: var(--radius);
 }
 .demo-panel h2 {
-  /* Schaalt met 4vw, maar blijft tussen 1.8rem en 2.7rem. */  font-size: clamp(1.8rem, 4vw, 2.7rem);
+  /* Schaalt met 4vw, maar blijft tussen 1.8rem en 2.7rem. */
+  font-size: clamp(1.8rem, 4vw, 2.7rem);
 }
 .flex-controls {
   display: flex;
@@ -610,11 +617,16 @@ button {
 /* Op smallere schermen staan onder andere de navigatie en de sitenaam onder elkaar. */
 @media (max-width: 52rem) {
   .header-inner {
+    /* Bij column loopt de dwarsas horizontaal: flex-start lijnt hier links uit. */
     align-items: flex-start;
+    /* Zet de sitenaam en navigatie onder elkaar in plaats van naast elkaar. */
     flex-direction: column;
+    /* Binnenruimte boven en onder: elk 0.9rem. */
     padding-block: 0.9rem;
   }
   .site-header {
+    /* Normale paginastroom: de header scrollt mee en kleeft niet zoals sticky.
+       Bij static hebben top en left geen effect op de positie. */
     position: static;
   }
   .hero {
@@ -709,7 +721,8 @@ img.project-visual {
   color: var(--ink);
 }
 .project-content h2 {
-  /* Schaalt met 3vw, maar blijft tussen 1.6rem en 2.3rem. */  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  /* Schaalt met 3vw, maar blijft tussen 1.6rem en 2.3rem. */
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
   /* Breekt zo nodig ook lange woorden of code af om buiten het scherm lopen te voorkomen. */
   overflow-wrap: anywhere;
 }
@@ -739,7 +752,8 @@ img.project-visual {
   border-top: 1px solid var(--line);
 }
 .ratio-example h3 {
-  /* Schaalt met 3vw, maar blijft tussen 1.35rem en 1.9rem. */  font-size: clamp(1.35rem, 3vw, 1.9rem);
+  /* Schaalt met 3vw, maar blijft tussen 1.35rem en 1.9rem. */
+  font-size: clamp(1.35rem, 3vw, 1.9rem);
   line-height: 1.2;
 }
 .ratio-stage {
@@ -765,7 +779,8 @@ img.project-visual {
 }
 .ratio-flex > .ratio-full {
   /* Niet groeien of krimpen; 100% basisbreedte dwingt dit blok met wrap naar een volle rij. */
-  flex: 0 0 100%;
+  flex: 0 0 100%; /* D vult een eigen rij. */
+  /* flex: 1 1 0; */ /* D doet mee op dezelfde rij: 1–1–2–1. */
 }
 /* Grid rekent de gaps zelf af voordat het de resterende ruimte in fr verdeelt. */
 .ratio-grid {

@@ -213,6 +213,15 @@
           <p class="status" id="flex-status" aria-live="polite">
             justify-content: flex-start; align-items: center;
           </p>
+          <!-- Dit codevoorbeeld toont de beginstand en volgt daarna de uitlijnknoppen. -->
+          <pre class="code-sample"><code id="flex-code">.flex-stage {
+  display: flex; /* Zet de blokken naast elkaar. */
+  flex-direction: row; /* De hoofdas loopt horizontaal. */
+  justify-content: flex-start; /* Horizontale verdeling. */
+  align-items: center; /* Verticale uitlijning. */
+  gap: 0.8rem; /* Ruimte tussen de blokken. */
+  min-height: 10rem; /* Extra hoogte maakt verticaal uitlijnen zichtbaar. */
+}</code></pre>
 
           <!-- Deze aparte variant vult de rij; de uitlijnknoppen hierboven bedienen alleen A, B en C. -->
           <section class="ratio-example" aria-labelledby="flex-ratio-title">
@@ -226,10 +235,36 @@
               <div class="ratio-tile ratio-full"><span><strong>D</strong><small>100% · volledige rij</small></span></div>
             </div>
             <p class="ratio-note">Bij een rij van 800 px en een gap van 16 px blijft 768 px over: A = 192 px, B = 192 px en C = 384 px. D = 800 px: op zijn eigen rij zijn er geen horizontale gaps om af te trekken.</p>
-            <pre class="code-sample"><code>.ratio-flex { display: flex; flex-wrap: wrap; gap: 1rem; }
-.ratio-flex &gt; .ratio-tile { flex: 1 1 0; min-width: 0; }
-.ratio-flex &gt; .ratio-double { flex-grow: 2; }
-.ratio-flex &gt; .ratio-full { flex: 0 0 100%; }</code></pre>
+            <pre class="code-sample"><code>.ratio-flex {
+  display: flex;    /* Zet de blokken naast elkaar. */
+  flex-wrap: wrap; /* Laat het volle blok naar een eigen rij gaan. */
+  gap: 1rem;      /* Ruimte tussen blokken; meestal 16px. */
+}
+
+/* A, B en C hebben allemaal de class ratio-tile. */
+.ratio-flex &gt; .ratio-tile {
+  flex: 1 1 0;
+  /*    ↑
+        Het EERSTE getal is de groeifactor: 1 deel.
+        De laatste 0 laat de verdeling bij breedte 0 beginnen. */
+  min-width: 0; /* Lange inhoud mag het blok niet breder dwingen. */
+}
+
+/* C heeft daarnaast de class ratio-double. */
+.ratio-flex &gt; .ratio-double {
+  flex-grow: 2; /* Overschrijft voor C de groeifactor: 2 delen. */
+}
+
+/* A: 1 + B: 1 + C: 2 = 4 delen op deze rij.
+   Na aftrek van de twee gaps krijgt:
+   A een kwart, B een kwart en C de helft van de ruimte. */
+
+.ratio-flex &gt; .ratio-full {
+  flex: 0 0 100%; /* D vult een eigen rij en telt hierboven niet mee. */
+}
+/* Flexbox verdeelt de ruimte per rij.
+   Het aantal delen is de SOM van de groeifactoren,
+   niet het aantal blokken: hier 3 blokken, maar 4 delen. */</code></pre>
             <p class="ratio-note"><code>flex: 1 1 0</code> betekent: groeien met factor 1, krimpen met factor 1 en beginnen bij breedte 0. De buitenste blokken hebben geen padding of border; de tekst krijgt ruimte via een binnenste span. Zo is C ook werkelijk twee keer zo breed als A.</p>
           </section>
         </section>
@@ -261,6 +296,23 @@
               >
             </div>
           </div>
+          <!-- Dezelfde maten maken het verschil tussen beide box-modellen zichtbaar. -->
+          <pre class="code-sample"><code>.measure-box {
+  width: 280px;  /* De opgegeven CSS-breedte. */
+  padding: 32px; /* Binnenruimte aan elke kant. */
+  border: 16px solid coral; /* Rand aan elke kant. */
+}
+
+.content-box-demo {
+  box-sizing: content-box; /* 280px geldt alleen voor de inhoud. */
+}
+/* Totale breedte: 280 + 32 + 32 + 16 + 16 = 376px. */
+
+.border-box-demo {
+  box-sizing: border-box; /* Padding en border vallen binnen 280px. */
+}
+/* Totale breedte: 280px.
+   Voor de inhoud blijft 280 - 32 - 32 - 16 - 16 = 184px over. */</code></pre>
         </section>
         <!-- Grid verdeelt vier items over twee kolommen en twee rijen. content lijnt het hele raster uit. -->
         <section class="demo-panel" aria-labelledby="grid">
@@ -426,12 +478,13 @@
           <p class="status" id="grid-status" aria-live="polite">
             justify-content: start; align-content: start;
           </p>
-          <pre class="code-sample"><code>display: grid;
-grid-template-columns: repeat(2, 4rem);
-grid-template-rows: repeat(2, 4rem);
-gap: 0.8rem;
-justify-content: start;
-align-content: start;</code></pre>
+          <pre class="code-sample"><code>display: grid; /* Maak een raster. */
+grid-template-columns: repeat(2, 4rem); /* Twee kolommen van 4rem. */
+grid-template-rows: repeat(2, 4rem);    /* Twee rijen van 4rem. */
+gap: 0.8rem;            /* Ruimte tussen de blokken. */
+justify-content: start; /* Hele raster horizontaal aan het begin. */
+align-content: start;   /* Hele raster verticaal aan het begin. */
+/* rem volgt de lettergrootte van html: meestal 1rem = 16px. */</code></pre>
 
           <!-- fr verdeelt de resterende breedte na aftrek van gap; -1 verwijst naar de laatste rasterlijn. -->
           <section class="ratio-example" aria-labelledby="grid-ratio-title">
@@ -446,11 +499,24 @@ align-content: start;</code></pre>
             </div>
             <p class="ratio-note">Bij 800 px en een gap van 16 px worden de kolommen 384, 192 en 192 px. Het brede blok D beslaat 800 px, inclusief de ruimte van de tussenliggende gaps.</p>
             <pre class="code-sample"><code>.ratio-grid {
-  display: grid;
+  display: grid; /* Maak een raster van rijen en kolommen. */
+
+  /* fr = een deel van de ruimte na aftrek van de gaps.
+     minmax(0, 2fr) = brede kolom, met minimum 0.
+     repeat(2, ...) = twee gelijke smalle kolommen.
+     Samen geeft dit de verhouding 2:1:1. */
   grid-template-columns: minmax(0, 2fr) repeat(2, minmax(0, 1fr));
-  gap: 1rem;
+
+  gap: 1rem; /* Ruimte tussen rijen en kolommen; meestal 16px. */
 }
-.ratio-grid &gt; .ratio-full { grid-column: 1 / -1; }</code></pre>
+
+/* &gt; selecteert alleen directe kinderen met class ratio-full. */
+.ratio-grid &gt; .ratio-full {
+  grid-column: 1 / -1; /* Van eerste tot laatste rasterlijn. */
+}
+/* Dit blok beslaat alle kolommen, inclusief de gapruimte.
+   Voorbeeld: 800px - 2 gaps van 16px = 768px.
+   Kolommen: 384px, 192px, 192px. Het volle blok: 800px. */</code></pre>
             <p class="ratio-note"><code>minmax(0, ...)</code> laat de kolommen ook op kleine schermen krimpen. Dit voorbeeld verdeelt kolombreedtes; <code>grid-column: span 2</code> zou twee kolommen én de gap ertussen beslaan.</p>
           </section>
         </section>
