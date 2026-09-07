@@ -1,46 +1,50 @@
 <!doctype html>
 <html lang="nl">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- UTF-8 ondersteunt accenten; viewport laat de layout aansluiten op het scherm. -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta
       name="description"
-      content="Campo Internet maakt heldere digitale producten, websites en interactieve concepten."
-    />
-    <meta name="author" content="Campo Internet" />
-    <meta name="theme-color" content="#071521" />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="nl_NL" />
-    <meta property="og:site_name" content="Campo Internet" />
-    <meta property="og:title" content="Campo Internet | Company and Projects" />
+      content="Lesvoorbeelden van semantische HTML, CSS, Flexbox, Grid en toegankelijke interactie.">
+    <meta name="author" content="HTML &amp; CSS demonstratie">
+    <meta name="theme-color" content="#071521">
+    <!-- Open Graph (property="og:...") bepaalt de linkpreview bij delen op sociale media. -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="nl_NL">
+    <meta property="og:site_name" content="HTML &amp; CSS demonstratie">
+    <meta
+      property="og:title"
+      content="HTML &amp; CSS demonstratie | Leren door te bouwen">
     <meta
       property="og:description"
-      content="Van digitaal idee naar een product dat mensen begrijpen en gebruiken."
-    />
-    <meta property="og:url" content="https://campointernet.github.io/" />
-    <meta
-      property="og:image"
-      content="https://campointernet.github.io/images/social-preview.png"
-    />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+      content="Van digitaal idee naar een product dat mensen begrijpen en gebruiken.">
+    <!-- Voeg bij eigen publicatie eventueel og:url toe met je eigen pagina-URL. -->
+    <meta property="og:image" content="https://picsum.photos/id/0/1200/630">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta
       property="og:image:alt"
-      content="Campo Internet - Company and Projects"
-    />
-    <meta name="twitter:card" content="summary_large_image" />
-    <title>Campo Internet | Company and Projects</title>
-    <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="css/style.css" />
+      content="Laptop als illustratie bij de HTML- en CSS-demonstratie">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>HTML &amp; CSS demonstratie | Leren door te bouwen</title>
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
     <a class="skip-link" href="#hoofdinhoud">Ga naar de inhoud</a>
     <header class="site-header">
       <div class="container header-inner">
-        <a class="brand" href="index.html" aria-label="Campo Internet, home"
-          ><img src="images/logo.svg" alt="" width="40" height="40" /><span
-            >Campo Internet</span
-          ></a
+        <!-- Het externe HTML5-logo is decoratief naast de sitenaam: alt="" voorkomt dubbele voorlezing. Width en height reserveren ruimte. -->
+        <a
+          class="brand"
+          href="index.html"
+          aria-label="HTML &amp; CSS demonstratie, home"
+          ><img
+            src="https://www.w3.org/html/logo/downloads/HTML5_Badge_64.png"
+            alt=""
+            width="40"
+            height="40"><span>HTML &amp; CSS demonstratie</span></a
         >
         <nav aria-label="Hoofdnavigatie">
           <ul class="nav-list">
@@ -55,16 +59,16 @@
     </header>
     <main id="hoofdinhoud">
       <section class="hero-shell">
-        <div class="hero container" aria-labelledby="hero-title">
+        <div class="hero container" role="group" aria-labelledby="hero-title">
           <div class="hero-copy">
-            <p class="eyebrow">Company and projects</p>
+            <p class="eyebrow">HTML, CSS en JavaScript</p>
             <h1 id="hero-title">
-              Digitale ideeën worden <span>werkbare producten.</span>
+              Van HTML naar <span>werkende websites.</span>
             </h1>
             <p class="lead">
-              Campo Internet combineert ontwerp, techniek en ondernemerschap. We
-              maken digitale oplossingen die logisch voelen en helder uit te
-              leggen zijn.
+              Ontdek hoe HTML de inhoud structureert, CSS de vormgeving bepaalt
+              en JavaScript interactie toevoegt. Gebruik deze voorbeelden als
+              startpunt voor je eigen website.
             </p>
             <div class="button-row">
               <a class="button" href="projects.html">Bekijk projecten →</a
@@ -73,18 +77,19 @@
           </div>
           <div
             class="hero-art"
+            role="group"
             aria-label="Visuele samenvatting van de werkwijze"
           >
             <div class="orbit orbit-one"></div>
             <div class="orbit orbit-two"></div>
-            <article class="hero-card hero-card-one">
+            <div class="hero-card hero-card-one">
               <span class="eyebrow">Ontwerpen</span><strong>helder.</strong
               ><span class="code-line">display: flex;</span>
-            </article>
-            <article class="hero-card hero-card-two">
+            </div>
+            <div class="hero-card hero-card-two">
               <span class="eyebrow">Bouwen</span><strong>bruikbaar.</strong
               ><span class="code-line">box-sizing: border-box;</span>
-            </article>
+            </div>
           </div>
         </div>
       </section>
@@ -129,7 +134,7 @@
       <section class="section dark-section">
         <div class="container">
           <p class="eyebrow">Lesdemo</p>
-          <h2>Statisch vormt de basis.<br />Dynamisch reageert.</h2>
+          <h2>Statisch vormt de basis.<br>Dynamisch reageert.</h2>
           <p class="lead">
             Bekijk dezelfde site als inhoudelijk HTML/CSS-document en als pagina
             die met JavaScript van toestand verandert.
@@ -150,10 +155,17 @@
     </main>
     <footer class="site-footer">
       <div class="container footer-inner">
-        <p><strong>Campo Internet</strong><br />Company and Projects</p>
-        <p>Den Haag · <span data-current-year>2026</span></p>
+        <p>
+          <strong>HTML &amp; CSS demonstratie</strong><br>Leren door te bouwen
+        </p>
+        <p>Lesmateriaal · <span data-current-year>2026</span></p>
+        <p class="image-credit">
+          Logo: <a href="https://www.w3.org/html/logo/">W3C HTML5</a> ·
+          <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>
+        </p>
       </div>
     </footer>
+    <!-- defer voert de gedeelde interacties uit nadat de HTML is ingelezen. -->
     <script src="js/site.js" defer></script>
   </body>
 </html>

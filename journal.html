@@ -1,41 +1,41 @@
 <!doctype html>
 <html lang="nl">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- UTF-8 ondersteunt accenten; viewport laat de layout aansluiten op het scherm. -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta
       name="description"
-      content="Notities over ontwerp, techniek en digitaal productdenken."
-    />
-    <meta name="theme-color" content="#071521" />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="nl_NL" />
-    <meta property="og:title" content="Journal | Campo Internet" />
+      content="Notities over ontwerp, techniek en digitaal productdenken.">
+    <meta name="theme-color" content="#071521">
+    <!-- Open Graph (property="og:...") bepaalt de linkpreview bij delen op sociale media. -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="nl_NL">
+    <meta property="og:title" content="Journal | HTML &amp; CSS demonstratie">
     <meta
       property="og:description"
-      content="Notities over ontwerp, techniek en digitaal productdenken."
-    />
-    <meta
-      property="og:url"
-      content="https://campointernet.github.io/journal.html"
-    />
-    <meta
-      property="og:image"
-      content="https://campointernet.github.io/images/social-preview.png"
-    />
-    <meta name="twitter:card" content="summary_large_image" />
-    <title>Journal | Campo Internet</title>
-    <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="css/style.css" />
+      content="Notities over ontwerp, techniek en digitaal productdenken.">
+    <!-- Voeg bij eigen publicatie eventueel og:url toe met je eigen pagina-URL. -->
+    <meta property="og:image" content="https://picsum.photos/id/0/1200/630">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Journal | HTML &amp; CSS demonstratie</title>
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
     <a class="skip-link" href="#hoofdinhoud">Ga naar de inhoud</a>
     <header class="site-header">
       <div class="container header-inner">
-        <a class="brand" href="index.html" aria-label="Campo Internet, home"
-          ><img src="images/logo.svg" alt="" width="40" height="40" /><span
-            >Campo Internet</span
-          ></a
+        <!-- Het externe HTML5-logo is decoratief naast de sitenaam: alt="" voorkomt dubbele voorlezing. Width en height reserveren ruimte. -->
+        <a
+          class="brand"
+          href="index.html"
+          aria-label="HTML &amp; CSS demonstratie, home"
+          ><img
+            src="https://www.w3.org/html/logo/downloads/HTML5_Badge_64.png"
+            alt=""
+            width="40"
+            height="40"><span>HTML &amp; CSS demonstratie</span></a
         >
         <nav aria-label="Hoofdnavigatie">
           <ul class="nav-list">
@@ -103,10 +103,17 @@
     </main>
     <footer class="site-footer">
       <div class="container footer-inner">
-        <p><strong>Campo Internet</strong><br />Company and Projects</p>
-        <p>Den Haag · <span data-current-year>2026</span></p>
+        <p>
+          <strong>HTML &amp; CSS demonstratie</strong><br>Leren door te bouwen
+        </p>
+        <p>Lesmateriaal · <span data-current-year>2026</span></p>
+        <p class="image-credit">
+          Logo: <a href="https://www.w3.org/html/logo/">W3C HTML5</a> ·
+          <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>
+        </p>
       </div>
     </footer>
+    <!-- defer voert de gedeelde interacties uit nadat de HTML is ingelezen. -->
     <script src="js/site.js" defer></script>
   </body>
 </html>

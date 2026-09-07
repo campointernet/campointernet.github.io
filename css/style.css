@@ -1,3 +1,4 @@
+/* CSS-variabelen staan centraal op het html-element; var(--naam) gebruikt zo’n waarde. */
 :root {
   --navy-950: #071521;
   --navy-900: #0b2234;
@@ -7,7 +8,7 @@
   --ink: #102a3c;
   --muted: #546b79;
   --cyan: #25d0c7;
-  --cyan-dark: #087f7a;
+  --cyan-dark: #076d69;
   --coral: #f27052;
   --line: #cbd5d8;
   --white: #ffffff;
@@ -28,6 +29,7 @@ body {
   margin: 0;
   color: var(--ink);
   background: var(--paper);
+  /* De browser kiest het eerste beschikbare lettertype uit deze lijst. */
   font-family:
     Inter,
     ui-sans-serif,
@@ -36,7 +38,9 @@ body {
     BlinkMacSystemFont,
     "Segoe UI",
     sans-serif;
+  /* rem is relatief aan de lettergrootte van html; 1rem is meestal 16px. */
   font-size: 1rem;
+  /* Zonder eenheid: de regelhoogte is 1,65 keer de eigen lettergrootte. */
   line-height: 1.65;
 }
 img {
@@ -51,6 +55,7 @@ a {
 a:hover {
   text-decoration-thickness: 0.14em;
 }
+/* Toont een duidelijke focusrand wanneer de browser dat nodig vindt, bijvoorbeeld bij Tab. */
 a:focus-visible,
 button:focus-visible {
   outline: 3px solid var(--coral);
@@ -64,11 +69,13 @@ h3 {
   letter-spacing: -0.035em;
 }
 h1 {
+  /* ch is de breedte van het teken 0 in dit lettertype; dit begrenst de kopbreedte. */
   max-width: 13ch;
+  /* clamp(min, voorkeur, max): 8% van de vensterbreedte, begrensd tussen 3rem en 6.7rem. */
   font-size: clamp(3rem, 8vw, 6.7rem);
 }
 h2 {
-  font-size: clamp(2rem, 4vw, 3.5rem);
+  /* Schaalt met 4vw, maar blijft tussen 2rem en 3.5rem. */  font-size: clamp(2rem, 4vw, 3.5rem);
 }
 h3 {
   font-size: 1.35rem;
@@ -80,7 +87,9 @@ button {
   font: inherit;
 }
 .container {
+  /* calc trekt ruimte voor de zijkanten af; min kiest de kleinste van deze breedte en de maximale breedte. */
   width: min(calc(100% - 2rem), var(--max-width));
+  /* In deze horizontale schrijfrichting centreren automatische linker- en rechtermarges de container. */
   margin-inline: auto;
 }
 .skip-link {
@@ -97,12 +106,16 @@ button {
   top: 1rem;
 }
 .site-header {
+  /* Blijft vanaf top: 0 aan de bovenkant kleven tijdens scrollen, binnen de oudercontainer. */
   position: sticky;
   top: 0;
+  /* Bepaalt de stapelvolgorde binnen de stapelcontext; hoger ligt vóór lager. */
   z-index: 20;
   color: var(--white);
+  /* rgba bevat rood, groen, blauw en dekking: 0.95 betekent 95% ondoorzichtig. */
   background: rgba(7, 21, 33, 0.95);
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  /* Vervaagt wat achter de deels transparante header zichtbaar is. */
   backdrop-filter: blur(12px);
 }
 .header-inner {
@@ -126,6 +139,7 @@ button {
 }
 .nav-list {
   display: flex;
+  /* Blokken mogen naar een volgende rij als ze niet op één rij passen. */
   flex-wrap: wrap;
   gap: 0.25rem 1.2rem;
   margin: 0;
@@ -144,6 +158,7 @@ button {
 .nav-list a:hover {
   color: var(--white);
 }
+/* De attribuutselector selecteert alleen de link naar de huidige pagina. */
 .nav-list a[aria-current="page"] {
   color: var(--cyan);
   border-bottom-color: var(--cyan);
@@ -158,6 +173,7 @@ button {
   gap: 3rem;
   align-items: center;
   min-height: 45rem;
+  /* Boven- en onderruimte groeit met de vensterbreedte, tussen 4rem en 8rem. */
   padding-block: clamp(4rem, 10vw, 8rem);
 }
 .hero-copy {
@@ -170,7 +186,7 @@ button {
 .lead {
   max-width: 47rem;
   color: var(--muted);
-  font-size: clamp(1.12rem, 2vw, 1.38rem);
+  /* Schaalt met 2vw, maar blijft tussen 1.12rem en 1.38rem. */  font-size: clamp(1.12rem, 2vw, 1.38rem);
 }
 .hero-shell .lead {
   color: #b9ccd4;
@@ -223,11 +239,13 @@ button {
   min-height: 28rem;
 }
 .orbit {
+  /* Plaatst het element buiten de normale stroom, hier ten opzichte van een gepositioneerde ouder. */
   position: absolute;
   border: 1px solid rgba(37, 208, 199, 0.35);
   border-radius: 50%;
 }
 .orbit-one {
+  /* Verkorting voor afstanden boven, rechts, onder en links, in die volgorde. */
   inset: 0 4rem 2rem 0;
 }
 .orbit-two {
@@ -250,6 +268,7 @@ button {
 .hero-card-one {
   top: 1rem;
   right: 0;
+  /* Draait de kaart visueel 3 graden; de oorspronkelijke layoutruimte blijft gelijk. */
   transform: rotate(3deg);
 }
 .hero-card-two {
@@ -265,8 +284,9 @@ button {
   font-size: 0.85rem;
 }
 .section {
-  padding-block: clamp(4rem, 8vw, 7rem);
+  /* Schaalt met 8vw, maar blijft tussen 4rem en 7rem. */  padding-block: clamp(4rem, 8vw, 7rem);
 }
+/* Het plusteken selecteert een section die direct na een andere section staat. */
 .section + .section {
   border-top: 1px solid var(--line);
 }
@@ -322,7 +342,8 @@ button {
   border-radius: 99rem;
 }
 .page-main {
-  padding-block: clamp(3.5rem, 8vw, 7rem);
+  /* Schaalt met 8vw, maar blijft tussen 3.5rem en 7rem. */  padding-block: clamp(3.5rem, 8vw, 7rem);
+  /* vh is 1% van de viewporthoogte; dit geeft de inhoud minstens 65% van die hoogte. */
   min-height: 65vh;
 }
 .page-intro {
@@ -371,6 +392,7 @@ button {
 .project-visual {
   display: grid;
   min-height: 14rem;
+  /* In Grid: verkorting voor align-items en justify-items; centreert de inhoud op beide assen. */
   place-items: center;
   color: var(--white);
   font-size: 3rem;
@@ -425,6 +447,7 @@ button {
   font-weight: 750;
   cursor: pointer;
 }
+/* De actieve knop krijgt deze stijl; JavaScript werkt aria-pressed bij. */
 .filter-button[aria-pressed="true"] {
   color: var(--white);
   background: var(--navy-900);
@@ -444,7 +467,7 @@ button {
 }
 .journal-item h2 {
   margin-bottom: 0.6rem;
-  font-size: clamp(1.45rem, 3vw, 2.2rem);
+  /* Schaalt met 3vw, maar blijft tussen 1.45rem en 2.2rem. */  font-size: clamp(1.45rem, 3vw, 2.2rem);
 }
 .journal-item h2 a {
   text-decoration: none;
@@ -458,13 +481,13 @@ button {
   gap: 3.5rem;
 }
 .demo-panel {
-  padding: clamp(1.2rem, 3vw, 2rem);
+  /* Schaalt met 3vw, maar blijft tussen 1.2rem en 2rem. */  padding: clamp(1.2rem, 3vw, 2rem);
   background: var(--paper-strong);
   border: 1px solid var(--line);
   border-radius: var(--radius);
 }
 .demo-panel h2 {
-  font-size: clamp(1.8rem, 4vw, 2.7rem);
+  /* Schaalt met 4vw, maar blijft tussen 1.8rem en 2.7rem. */  font-size: clamp(1.8rem, 4vw, 2.7rem);
 }
 .flex-controls {
   display: flex;
@@ -488,7 +511,7 @@ button {
   width: 5rem;
   min-height: 5rem;
   place-items: center;
-  align-self: center;
+  /* De container regelt de verticale uitlijning via align-items. */
   color: var(--white);
   background: var(--navy-800);
   border-radius: 0.55rem;
@@ -537,6 +560,7 @@ button {
   line-height: 1;
 }
 .code-sample {
+  /* Toont een horizontale scrollbar als de inhoud breder is dan dit element. */
   overflow-x: auto;
   padding: 1rem;
   color: #dce8ed;
@@ -544,6 +568,7 @@ button {
   border-radius: 0.7rem;
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 0.88rem;
+  /* Bewaart spaties en regeleinden, zodat code zijn inspringing behoudt. */
   white-space: pre;
 }
 .site-footer {
@@ -560,6 +585,7 @@ button {
 .footer-inner p {
   margin: 0;
 }
+/* Deze regels gelden vanaf 48rem vensterbreedte; bij een standaardbasis van 16px is dat 768px. */
 @media (min-width: 48rem) {
   .hero {
     grid-template-columns: 1.25fr 0.75fr;
@@ -570,6 +596,7 @@ button {
   }
   .card-grid,
   .project-grid {
+    /* repeat maakt drie gelijke kolommen; fr verdeelt de beschikbare ruimte na aftrek van gaps. */
     grid-template-columns: repeat(3, 1fr);
   }
   .profile-layout {
@@ -580,6 +607,7 @@ button {
     grid-template-columns: 10rem 1fr;
   }
 }
+/* Op smallere schermen staan onder andere de navigatie en de sitenaam onder elkaar. */
 @media (max-width: 52rem) {
   .header-inner {
     align-items: flex-start;
@@ -599,6 +627,7 @@ button {
     gap: 0.15rem 0.8rem;
   }
 }
+/* Respecteert de systeemvoorkeur voor minder beweging door animatie-effecten te beperken. */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -606,6 +635,181 @@ button {
   *,
   *::before,
   *::after {
+    /* Een bijna onmiddellijke overgang; !important geeft dit voorrang op gewone overgangsregels. */
     transition-duration: 0.01ms !important;
   }
+}
+
+/* CSS Grid-demo: vaste sporen laten ruimte voor uitlijning op beide assen. */
+.grid-stage {
+  display: grid;
+  /* Twee kolommen van elk 4rem; de vrije ruimte ernaast maakt uitlijning zichtbaar. */
+  grid-template-columns: repeat(2, 4rem);
+  grid-template-rows: repeat(2, 4rem);
+  justify-content: start;
+  align-content: start;
+  gap: 0.8rem;
+  height: 20rem;
+  padding: 1rem;
+  background: #e7efef;
+  border: 2px dashed #8aa4aa;
+  border-radius: 0.7rem;
+}
+.grid-item {
+  display: grid;
+  place-items: center;
+  background: var(--navy-800);
+  color: white;
+  border-radius: 0.55rem;
+  font-size: 1.4rem;
+  font-weight: 900;
+}
+/* Fieldset en legend geven elke richting een toegankelijke groepsnaam. */
+.layout-controls {
+  min-width: 0;
+  margin: 1rem 0;
+  padding: 0.75rem;
+  border: 1px solid #8aa4aa;
+  border-radius: 0.7rem;
+}
+.layout-controls legend {
+  padding-inline: 0.35rem;
+  font-weight: 750;
+}
+.layout-controls .flex-controls {
+  margin: 0.25rem 0;
+}
+.flex-stage {
+  align-items: center;
+}
+.flex-item {
+  width: 4rem;
+  min-height: 4rem;
+}
+/* De bronverhouding blijft 16:9; object-fit vult de kaart zonder vervorming. */
+img.project-visual {
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  /* Houdt de verhouding breedte:hoogte op 16:9. */
+  aspect-ratio: 16 / 9;
+  /* Vult het afbeeldingsvak zonder vervorming; zo nodig worden de randen afgesneden. */
+  object-fit: cover;
+}
+.image-credit {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+}
+/* Donkerder tekst geeft voldoende contrast op de lichte en koraalrode vlakken. */
+.card-number,
+.dynamic-number {
+  color: #a63e26;
+}
+.hero-card .eyebrow {
+  color: var(--ink);
+}
+.project-content h2 {
+  /* Schaalt met 3vw, maar blijft tussen 1.6rem en 2.3rem. */  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  /* Breekt zo nodig ook lange woorden of code af om buiten het scherm lopen te voorkomen. */
+  overflow-wrap: anywhere;
+}
+/* De meetdemo behoudt echte pixelbreedtes en scrollt lokaal op smalle schermen. */
+.demo-stack,
+.demo-panel,
+.profile-layout > *,
+.card-grid > * {
+  min-width: 0;
+}
+.box-row {
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+.status {
+  overflow-wrap: anywhere;
+}
+:target {
+  /* Laat bij scrollen naar een anker extra ruimte boven het doel vrij voor de vaste header. */
+  scroll-margin-top: 7rem;
+}
+
+/* Breedtevarianten staan los van de bestaande interactieve uitlijndemo's. */
+.ratio-example {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+}
+.ratio-example h3 {
+  /* Schaalt met 3vw, maar blijft tussen 1.35rem en 1.9rem. */  font-size: clamp(1.35rem, 3vw, 1.9rem);
+  line-height: 1.2;
+}
+.ratio-stage {
+  gap: 1rem;
+  padding: 1rem;
+  background: #e7efef;
+  border: 2px dashed #8aa4aa;
+  border-radius: 0.7rem;
+}
+.ratio-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+/* Zonder padding/border op de flex-items blijft de buitenbreedte exact 1:1:2. */
+.ratio-flex > .ratio-tile {
+  /* Volgorde: groeien, krimpen, basisbreedte; vanaf nul verdeelt flex-grow de beschikbare ruimte. */
+  flex: 1 1 0;
+  min-width: 0;
+}
+.ratio-flex > .ratio-double {
+  /* Krijgt twee delen van de vrije ruimte, tegenover één deel voor de andere blokken. */
+  flex-grow: 2;
+}
+.ratio-flex > .ratio-full {
+  /* Niet groeien of krimpen; 100% basisbreedte dwingt dit blok met wrap naar een volle rij. */
+  flex: 0 0 100%;
+}
+/* Grid rekent de gaps zelf af voordat het de resterende ruimte in fr verdeelt. */
+.ratio-grid {
+  display: grid;
+  /* Verhouding 2:1:1; minimum 0 voorkomt dat lange inhoud de kolommen onbedoeld verbreedt. */
+  grid-template-columns: minmax(0, 2fr) repeat(2, minmax(0, 1fr));
+}
+.ratio-grid > .ratio-full {
+  /* Van rasterlijn 1 tot de laatste lijn (-1): dit blok beslaat alle kolommen. */
+  grid-column: 1 / -1;
+}
+.ratio-tile {
+  display: grid;
+  min-height: 7rem;
+  place-items: center;
+  color: var(--white);
+  background: var(--navy-800);
+  border-radius: 0.55rem;
+  text-align: center;
+}
+.ratio-tile > span {
+  padding: 0.75rem 0.25rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.ratio-tile strong {
+  display: block;
+  font-size: 1.8rem;
+  line-height: 1.2;
+}
+.ratio-tile small {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+}
+.ratio-tile.ratio-double {
+  background: #076d69;
+}
+.ratio-tile.ratio-full {
+  min-height: 5rem;
+  color: var(--ink);
+  background: #ffd8cf;
+}
+.ratio-note {
+  margin-top: 1rem;
+  font-size: 0.92rem;
 }

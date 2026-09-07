@@ -1,30 +1,29 @@
 <!doctype html>
 <html lang="nl">
   <head>
+    <!-- UTF-8 ondersteunt accenten; viewport laat de layout aansluiten op het scherm. -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Een selectie van digitale projecten en concepten van Campo Internet."
+      content="Een selectie van digitale projecten en concepten van HTML &amp; CSS demonstratie."
     />
     <meta name="theme-color" content="#071521" />
+    <!-- Open Graph (property="og:...") bepaalt de linkpreview bij delen op sociale media. -->
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="nl_NL" />
-    <meta property="og:title" content="Projects | Campo Internet" />
+    <meta
+      property="og:title"
+      content="Projects | HTML &amp; CSS demonstratie"
+    />
     <meta
       property="og:description"
       content="Digitale concepten waarin techniek, inhoud en gebruik samenkomen."
     />
-    <meta
-      property="og:url"
-      content="https://campointernet.github.io/projects.html"
-    />
-    <meta
-      property="og:image"
-      content="https://campointernet.github.io/images/social-preview.png"
-    />
+    <!-- Voeg bij eigen publicatie eventueel og:url toe met je eigen pagina-URL. -->
+    <meta property="og:image" content="https://picsum.photos/id/0/1200/630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <title>Projects | Campo Internet</title>
+    <title>Projects | HTML &amp; CSS demonstratie</title>
     <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="css/style.css" />
   </head>
@@ -32,10 +31,17 @@
     <a class="skip-link" href="#hoofdinhoud">Ga naar de inhoud</a>
     <header class="site-header">
       <div class="container header-inner">
-        <a class="brand" href="index.html" aria-label="Campo Internet, home"
-          ><img src="images/logo.svg" alt="" width="40" height="40" /><span
-            >Campo Internet</span
-          ></a
+        <!-- Het externe HTML5-logo is decoratief naast de sitenaam: alt="" voorkomt dubbele voorlezing. Width en height reserveren ruimte. -->
+        <a
+          class="brand"
+          href="index.html"
+          aria-label="HTML &amp; CSS demonstratie, home"
+          ><img
+            src="https://www.w3.org/html/logo/downloads/HTML5_Badge_64.png"
+            alt=""
+            width="40"
+            height="40"
+          /><span>HTML &amp; CSS demonstratie</span></a
         >
         <nav aria-label="Hoofdnavigatie">
           <ul class="nav-list">
@@ -54,10 +60,11 @@
         <h1>Projects</h1>
         <p class="lead">
           Digitale concepten waarin techniek, inhoud en gebruik samenkomen. De
-          knoppen hieronder tonen een klein dynamisch voorbeeld.
+          sfeerfoto’s komen van Lorem Picsum. De knoppen hieronder tonen een
+          klein dynamisch voorbeeld.
         </p>
       </header>
-      <div class="filter-row" aria-label="Filter projecten">
+      <div class="filter-row" role="group" aria-label="Filter projecten">
         <button
           class="filter-button"
           type="button"
@@ -97,9 +104,17 @@
           data-category="ai web"
           aria-labelledby="project-maison"
         >
-          <div class="project-visual visual-one" aria-hidden="true">
-            <span>AI</span>
-          </div>
+          <!-- loading="lazy": laad pas nabij het zichtbare scherm; decoding="async": laat andere inhoud tekenen zonder op het decoderen te wachten. -->
+          <!-- Decoratieve sfeerfoto: de projecttitel en omschrijving geven alle informatie. Vaste Picsum-ID voorkomt willekeurig wisselende foto's. -->
+          <img
+            class="project-visual"
+            src="https://picsum.photos/id/0/800/450"
+            alt=""
+            width="800"
+            height="450"
+            loading="lazy"
+            decoding="async"
+          />
           <div class="project-content">
             <p class="project-type">Knowledge & service</p>
             <h2 id="project-maison">MaisonGuide AI</h2>
@@ -119,9 +134,17 @@
           data-category="web"
           aria-labelledby="project-tasting"
         >
-          <div class="project-visual visual-two" aria-hidden="true">
-            <span>HET</span>
-          </div>
+          <!-- loading="lazy": laad pas nabij het zichtbare scherm; decoding="async": laat andere inhoud tekenen zonder op het decoderen te wachten. -->
+          <!-- Decoratieve sfeerfoto: de projecttitel en omschrijving geven alle informatie. Vaste Picsum-ID voorkomt willekeurig wisselende foto's. -->
+          <img
+            class="project-visual"
+            src="https://picsum.photos/id/225/800/450"
+            alt=""
+            width="800"
+            height="450"
+            loading="lazy"
+            decoding="async"
+          />
           <div class="project-content">
             <p class="project-type">Hospitality</p>
             <h2 id="project-tasting">High End Tasting</h2>
@@ -141,9 +164,17 @@
           data-category="learning web"
           aria-labelledby="project-simulation"
         >
-          <div class="project-visual visual-three" aria-hidden="true">
-            <span>PD</span>
-          </div>
+          <!-- loading="lazy": laad pas nabij het zichtbare scherm; decoding="async": laat andere inhoud tekenen zonder op het decoderen te wachten. -->
+          <!-- Decoratieve sfeerfoto: de projecttitel en omschrijving geven alle informatie. Vaste Picsum-ID voorkomt willekeurig wisselende foto's. -->
+          <img
+            class="project-visual"
+            src="https://picsum.photos/id/20/800/450"
+            alt=""
+            width="800"
+            height="450"
+            loading="lazy"
+            decoding="async"
+          />
           <div class="project-content">
             <p class="project-type">Education</p>
             <h2 id="project-simulation">Business Simulation</h2>
@@ -159,13 +190,25 @@
           </div>
         </article>
       </section>
+      <p class="image-credit">
+        Sfeerfoto’s:
+        <a href="https://picsum.photos/">Lorem Picsum</a> (Unsplash). Dit zijn
+        illustraties, geen projectafbeeldingen.
+      </p>
     </main>
     <footer class="site-footer">
       <div class="container footer-inner">
-        <p><strong>Campo Internet</strong><br />Company and Projects</p>
-        <p>Den Haag · <span data-current-year>2026</span></p>
+        <p>
+          <strong>HTML &amp; CSS demonstratie</strong><br />Leren door te bouwen
+        </p>
+        <p>Lesmateriaal · <span data-current-year>2026</span></p>
+        <p class="image-credit">
+          Logo: <a href="https://www.w3.org/html/logo/">W3C HTML5</a> ·
+          <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>
+        </p>
       </div>
     </footer>
+    <!-- defer voert de gedeelde interacties uit nadat de HTML is ingelezen. -->
     <script src="js/site.js" defer></script>
   </body>
 </html>

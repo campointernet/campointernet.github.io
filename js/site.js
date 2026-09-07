@@ -145,56 +145,34 @@ filterButtons.forEach((button) => {
 // FLEXBOX-DEMO
 // ------------------------------------------------------------
 
-// Zoek het element waarop we live
-// justify-content gaan aanpassen.
-//
-// Bijvoorbeeld:
-// <div id="flex-stage">
-const flexStage = document.querySelector("#flex-stage");
-
-// Zoek het element waarin we de huidige
-// justify-content waarde laten zien.
-const flexStatus = document.querySelector("#flex-status");
-
-// Zoek alle knoppen met data-justify.
-//
-// Bijvoorbeeld:
-// <button data-justify="center">Center</button>
-// <button data-justify="space-between">Space between</button>
-document.querySelectorAll("[data-justify]").forEach((button) => {
-  // Voeg een click-event toe aan iedere knop.
+// Elke knop beschrijft doel, CSS-eigenschap en waarde via data-attributen.
+// De twee assen bewaren onafhankelijk hun geselecteerde knop.
+document.querySelectorAll("[data-layout]").forEach((button) => {
   button.addEventListener("click", () => {
-    // Zoek opnieuw alle justify-knoppen.
-    document.querySelectorAll("[data-justify]").forEach((item) =>
-      // Zet aria-pressed op true
-      // voor de aangeklikte knop
-      // en false voor de andere knoppen.
-      item.setAttribute("aria-pressed", String(item === button)),
-    );
-
-    // Pas rechtstreeks een CSS-eigenschap aan via JavaScript.
-    //
-    // In CSS heet het:
-    // justify-content
-    //
-    // In JavaScript wordt dat:
-    // justifyContent
-    //
-    // button.dataset.justify haalt de waarde op van:
-    // data-justify
-    //
-    // Bijvoorbeeld:
-    // data-justify="center"
-    //
-    // wordt:
-    // flexStage.style.justifyContent = "center";
-    flexStage.style.justifyContent = button.dataset.justify;
-
-    // Laat de actieve waarde ook als tekst zien.
-    //
-    // Bijvoorbeeld:
-    // justify-content: center
-    flexStatus.textContent = `justify-content: ${button.dataset.justify}`;
+    const { layout, property, value } = button.dataset;
+    const stage = document.querySelector("#" + layout + "-stage");
+    const status = document.querySelector("#" + layout + "-status");
+    if (!stage || !status) return;
+    stage.style.setProperty(property, value);
+    document.querySelectorAll("[data-layout]").forEach((item) => {
+      if (
+        item.dataset.layout === layout &&
+        item.dataset.property === property
+      ) {
+        item.setAttribute("aria-pressed", String(item === button));
+      }
+    });
+    // Toon beide actuele eigenschappen; aria-live leest de wijziging voor.
+    const css = getComputedStyle(stage);
+    const vertical = layout === "grid" ? "align-content" : "align-items";
+    status.textContent =
+      "justify-content: " +
+      css.justifyContent +
+      "; " +
+      vertical +
+      ": " +
+      css.getPropertyValue(vertical) +
+      ";";
   });
 });
 

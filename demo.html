@@ -1,35 +1,40 @@
 <!doctype html>
 <html lang="nl">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- UTF-8 ondersteunt accenten; viewport laat de layout aansluiten op het scherm. -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta
       name="description"
-      content="Interactieve lesdemo over statisch, dynamisch, Flexbox en het box-model."
-    />
-    <meta name="theme-color" content="#071521" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Live demo | Campo Internet" />
+      content="Interactieve lesdemo over statisch, dynamisch, Flexbox, CSS Grid en toegankelijkheid.">
+    <meta name="theme-color" content="#071521">
+    <!-- Open Graph (property="og:...") bepaalt de linkpreview bij delen op sociale media. -->
+    <meta property="og:type" content="website">
+    <meta
+      property="og:title"
+      content="Live demo | HTML &amp; CSS demonstratie">
     <meta
       property="og:description"
-      content="Flexbox, border-box en JavaScript zichtbaar uitgelegd."
-    />
-    <meta
-      property="og:image"
-      content="https://campointernet.github.io/images/social-preview.png"
-    />
+      content="Flexbox, CSS Grid, border-box en toegankelijkheid zichtbaar uitgelegd.">
+    <meta property="og:image" content="https://picsum.photos/id/0/1200/630">
     <title>Live demo | HTML & CSS</title>
-    <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
     <a class="skip-link" href="#hoofdinhoud">Ga naar de inhoud</a>
     <header class="site-header">
       <div class="container header-inner">
-        <a class="brand" href="index.html" aria-label="Campo Internet, home"
-          ><img src="images/logo.svg" alt="" width="40" height="40" /><span
-            >Campo Internet</span
-          ></a
+        <!-- Het externe HTML5-logo is decoratief naast de sitenaam: alt="" voorkomt dubbele voorlezing. Width en height reserveren ruimte. -->
+        <a
+          class="brand"
+          href="index.html"
+          aria-label="HTML &amp; CSS demonstratie, home"
+          ><img
+            src="https://www.w3.org/html/logo/downloads/HTML5_Badge_64.png"
+            alt=""
+            width="40"
+            height="40"><span>HTML &amp; CSS demonstratie</span></a
         >
         <nav aria-label="Hoofdnavigatie">
           <ul class="nav-list">
@@ -51,6 +56,12 @@
           kan de toestand van de pagina veranderen.
         </p>
       </header>
+      <noscript
+        ><p>
+          De voorbeelden blijven zichtbaar. Schakel JavaScript in om de
+          uitlijning en teller te bedienen.
+        </p></noscript
+      >
       <div class="demo-stack">
         <section class="demo-panel" aria-labelledby="statisch">
           <p class="eyebrow">01 · Statisch</p>
@@ -68,47 +79,159 @@
           <h2 id="flexbox">Eén richting, meerdere verdelingen</h2>
           <p>
             De container heeft <code>display: flex</code>. Kies hoe de vrije
-            ruimte over de hoofdas wordt verdeeld.
+            ruimte over de horizontale hoofdas wordt verdeeld. Met
+            <code>flex-direction: row</code> regelt <code>align-items</code> de
+            verticale dwarsas.
           </p>
-          <div class="flex-controls">
-            <button
-              class="filter-button"
-              type="button"
-              data-justify="flex-start"
-              aria-pressed="true"
-            >
-              flex-start</button
-            ><button
-              class="filter-button"
-              type="button"
-              data-justify="center"
-              aria-pressed="false"
-            >
-              center</button
-            ><button
-              class="filter-button"
-              type="button"
-              data-justify="space-between"
-              aria-pressed="false"
-            >
-              space-between</button
-            ><button
-              class="filter-button"
-              type="button"
-              data-justify="space-around"
-              aria-pressed="false"
-            >
-              space-around
-            </button>
-          </div>
+          <!-- data-attributen bewaren de CSS-keuze voor JavaScript; aria-controls verwijst naar het bediende voorbeeld. -->
+          <!-- Twee onafhankelijke knopgroepen; aria-pressed maakt de selectie hoorbaar. -->
+          <fieldset class="layout-controls">
+            <legend>Horizontaal · <code>justify-content</code></legend>
+            <div class="flex-controls">
+              <button
+                class="filter-button"
+                type="button"
+                data-layout="flex"
+                data-property="justify-content"
+                data-value="flex-start"
+                aria-controls="flex-stage"
+                aria-pressed="true"
+              >
+                flex-start
+              </button>
+              <button
+                class="filter-button"
+                type="button"
+                data-layout="flex"
+                data-property="justify-content"
+                data-value="center"
+                aria-controls="flex-stage"
+                aria-pressed="false"
+              >
+                center
+              </button>
+              <button
+                class="filter-button"
+                type="button"
+                data-layout="flex"
+                data-property="justify-content"
+                data-value="flex-end"
+                aria-controls="flex-stage"
+                aria-pressed="false"
+              >
+                flex-end
+              </button>
+              <button
+                class="filter-button"
+                type="button"
+                data-layout="flex"
+                data-property="justify-content"
+                data-value="space-between"
+                aria-controls="flex-stage"
+                aria-pressed="false"
+              >
+                space-between
+              </button>
+              <button
+                class="filter-button"
+                type="button"
+                data-layout="flex"
+                data-property="justify-content"
+                data-value="space-around"
+                aria-controls="flex-stage"
+                aria-pressed="false"
+              >
+                space-around
+              </button>
+              <button
+                class="filter-button"
+                type="button"
+                data-layout="flex"
+                data-property="justify-content"
+                data-value="space-evenly"
+                aria-controls="flex-stage"
+                aria-pressed="false"
+              >
+                space-evenly
+              </button>
+            </div>
+          </fieldset>
+          <fieldset class="layout-controls">
+            <legend>Verticaal · <code>align-items</code></legend>
+            <div class="flex-controls">
+              <button
+                class="filter-button"
+                type="button"
+                data-layout="flex"
+                data-property="align-items"
+                data-value="flex-start"
+                aria-controls="flex-stage"
+                aria-pressed="false"
+              >
+                flex-start
+              </button>
+              <button
+                class="filter-button"
+                type="button"
+                data-layout="flex"
+                data-property="align-items"
+                data-value="center"
+                aria-controls="flex-stage"
+                aria-pressed="true"
+              >
+                center
+              </button>
+              <button
+                class="filter-button"
+                type="button"
+                data-layout="flex"
+                data-property="align-items"
+                data-value="flex-end"
+                aria-controls="flex-stage"
+                aria-pressed="false"
+              >
+                flex-end
+              </button>
+              <button
+                class="filter-button"
+                type="button"
+                data-layout="flex"
+                data-property="align-items"
+                data-value="stretch"
+                aria-controls="flex-stage"
+                aria-pressed="false"
+              >
+                stretch
+              </button>
+            </div>
+          </fieldset>
           <div class="flex-stage" id="flex-stage">
             <div class="flex-item">A</div>
             <div class="flex-item">B</div>
             <div class="flex-item">C</div>
           </div>
           <p class="status" id="flex-status" aria-live="polite">
-            justify-content: flex-start
+            justify-content: flex-start; align-items: center;
           </p>
+
+          <!-- Deze aparte variant vult de rij; de uitlijnknoppen hierboven bedienen alleen A, B en C. -->
+          <section class="ratio-example" aria-labelledby="flex-ratio-title">
+            <p class="eyebrow">Variant · Flexibele breedtes</p>
+            <h3 id="flex-ratio-title">Twee gelijk, één dubbel, één volle rij</h3>
+            <p>A en B krijgen ieder één deel, C krijgt twee delen. Flexbox trekt eerst de twee gaps van de beschikbare rijbreedte af en verdeelt de rest in <strong>1 : 1 : 2</strong>. D begint op de volgende rij en vult die helemaal.</p>
+            <div class="ratio-flex ratio-stage">
+              <div class="ratio-tile"><span><strong>A</strong><small>1 deel</small></span></div>
+              <div class="ratio-tile"><span><strong>B</strong><small>1 deel</small></span></div>
+              <div class="ratio-tile ratio-double"><span><strong>C</strong><small>2 delen</small></span></div>
+              <div class="ratio-tile ratio-full"><span><strong>D</strong><small>100% · volledige rij</small></span></div>
+            </div>
+            <p class="ratio-note">Bij een rij van 800 px en een gap van 16 px blijft 768 px over: A = 192 px, B = 192 px en C = 384 px. D = 800 px: op zijn eigen rij zijn er geen horizontale gaps om af te trekken.</p>
+            <pre class="code-sample"><code>.ratio-flex { display: flex; flex-wrap: wrap; gap: 1rem; }
+.ratio-flex &gt; .ratio-tile { flex: 1 1 0; min-width: 0; }
+.ratio-flex &gt; .ratio-double { flex-grow: 2; }
+.ratio-flex &gt; .ratio-full { flex: 0 0 100%; }</code></pre>
+            <p class="ratio-note"><code>flex: 1 1 0</code> betekent: groeien met factor 1, krimpen met factor 1 en beginnen bij breedte 0. De buitenste blokken hebben geen padding of border; de tekst krijgt ruimte via een binnenste span. Zo is C ook werkelijk twee keer zo breed als A.</p>
+          </section>
         </section>
         <section class="demo-panel" aria-labelledby="boxmodel">
           <p class="eyebrow">03 · Box-model</p>
@@ -122,7 +245,7 @@
           <div class="box-row">
             <div>
               <div class="measure-box content-box-demo">
-                <strong>content-box</strong><br />breedte geldt alleen voor
+                <strong>content-box</strong><br>breedte geldt alleen voor
                 content
               </div>
               <span class="measure-label" id="content-measure"
@@ -131,7 +254,7 @@
             </div>
             <div>
               <div class="measure-box border-box-demo">
-                <strong>border-box</strong><br />padding en border tellen mee
+                <strong>border-box</strong><br>padding en border tellen mee
               </div>
               <span class="measure-label" id="border-measure"
                 >totaal meten…</span
@@ -139,8 +262,200 @@
             </div>
           </div>
         </section>
+        <!-- Grid verdeelt vier items over twee kolommen en twee rijen. content lijnt het hele raster uit. -->
+        <section class="demo-panel" aria-labelledby="grid">
+          <p class="eyebrow">04 · CSS Grid</p>
+          <h2 id="grid">Vier blokken, twee richtingen</h2>
+          <p>
+            Deze container gebruikt <code>display: grid</code> met twee kolommen
+            en twee rijen. <code>justify-content</code> verdeelt het hele raster
+            horizontaal; <code>align-content</code> verticaal. De vaste sporen
+            laten vrije ruimte over, zodat je het verschil ziet.
+            <code>justify-items</code> en <code>align-items</code> zouden juist
+            de blokken binnen hun eigen cel uitlijnen.
+          </p>
+          <fieldset class="layout-controls">
+            <legend>Horizontaal · <code>justify-content</code></legend>
+            <div class="flex-controls">
+              <button
+                class="filter-button"
+                type="button"
+                data-layout="grid"
+                data-property="justify-content"
+                data-value="start"
+                aria-controls="grid-stage"
+                aria-pressed="true"
+              >
+                start
+              </button>
+              <button
+                class="filter-button"
+                type="button"
+                data-layout="grid"
+                data-property="justify-content"
+                data-value="center"
+                aria-controls="grid-stage"
+                aria-pressed="false"
+              >
+                center
+              </button>
+              <button
+                class="filter-button"
+                type="button"
+                data-layout="grid"
+                data-property="justify-content"
+                data-value="end"
+                aria-controls="grid-stage"
+                aria-pressed="false"
+              >
+                end
+              </button>
+              <button
+                class="filter-button"
+                type="button"
+                data-layout="grid"
+                data-property="justify-content"
+                data-value="space-between"
+                aria-controls="grid-stage"
+                aria-pressed="false"
+              >
+                space-between
+              </button>
+              <button
+                class="filter-button"
+                type="button"
+                data-layout="grid"
+                data-property="justify-content"
+                data-value="space-around"
+                aria-controls="grid-stage"
+                aria-pressed="false"
+              >
+                space-around
+              </button>
+              <button
+                class="filter-button"
+                type="button"
+                data-layout="grid"
+                data-property="justify-content"
+                data-value="space-evenly"
+                aria-controls="grid-stage"
+                aria-pressed="false"
+              >
+                space-evenly
+              </button>
+            </div>
+          </fieldset>
+          <fieldset class="layout-controls">
+            <legend>Verticaal · <code>align-content</code></legend>
+            <div class="flex-controls">
+              <button
+                class="filter-button"
+                type="button"
+                data-layout="grid"
+                data-property="align-content"
+                data-value="start"
+                aria-controls="grid-stage"
+                aria-pressed="true"
+              >
+                start
+              </button>
+              <button
+                class="filter-button"
+                type="button"
+                data-layout="grid"
+                data-property="align-content"
+                data-value="center"
+                aria-controls="grid-stage"
+                aria-pressed="false"
+              >
+                center
+              </button>
+              <button
+                class="filter-button"
+                type="button"
+                data-layout="grid"
+                data-property="align-content"
+                data-value="end"
+                aria-controls="grid-stage"
+                aria-pressed="false"
+              >
+                end
+              </button>
+              <button
+                class="filter-button"
+                type="button"
+                data-layout="grid"
+                data-property="align-content"
+                data-value="space-between"
+                aria-controls="grid-stage"
+                aria-pressed="false"
+              >
+                space-between
+              </button>
+              <button
+                class="filter-button"
+                type="button"
+                data-layout="grid"
+                data-property="align-content"
+                data-value="space-around"
+                aria-controls="grid-stage"
+                aria-pressed="false"
+              >
+                space-around
+              </button>
+              <button
+                class="filter-button"
+                type="button"
+                data-layout="grid"
+                data-property="align-content"
+                data-value="space-evenly"
+                aria-controls="grid-stage"
+                aria-pressed="false"
+              >
+                space-evenly
+              </button>
+            </div>
+          </fieldset>
+          <div class="grid-stage" id="grid-stage">
+            <div class="grid-item">A</div>
+            <div class="grid-item">B</div>
+            <div class="grid-item">C</div>
+            <div class="grid-item">D</div>
+          </div>
+          <!-- aria-live meldt gewijzigde CSS zonder de toetsenbordfocus te verplaatsen. -->
+          <p class="status" id="grid-status" aria-live="polite">
+            justify-content: start; align-content: start;
+          </p>
+          <pre class="code-sample"><code>display: grid;
+grid-template-columns: repeat(2, 4rem);
+grid-template-rows: repeat(2, 4rem);
+gap: 0.8rem;
+justify-content: start;
+align-content: start;</code></pre>
+
+          <!-- fr verdeelt de resterende breedte na aftrek van gap; -1 verwijst naar de laatste rasterlijn. -->
+          <section class="ratio-example" aria-labelledby="grid-ratio-title">
+            <p class="eyebrow">Variant · Kolommen in verhouding</p>
+            <h3 id="grid-ratio-title">Een brede kolom naast twee smalle</h3>
+            <p>Met <code>2fr 1fr 1fr</code> verdeelt Grid de breedte na aftrek van de twee gaps in <strong>2 : 1 : 1</strong>. A is twee keer zo breed als B en C. D loopt daaronder van de eerste tot de laatste rasterlijn.</p>
+            <div class="ratio-grid ratio-stage">
+              <div class="ratio-tile ratio-double"><span><strong>A</strong><small>2 delen</small></span></div>
+              <div class="ratio-tile"><span><strong>B</strong><small>1 deel</small></span></div>
+              <div class="ratio-tile"><span><strong>C</strong><small>1 deel</small></span></div>
+              <div class="ratio-tile ratio-full"><span><strong>D</strong><small>1 / -1 · alle kolommen</small></span></div>
+            </div>
+            <p class="ratio-note">Bij 800 px en een gap van 16 px worden de kolommen 384, 192 en 192 px. Het brede blok D beslaat 800 px, inclusief de ruimte van de tussenliggende gaps.</p>
+            <pre class="code-sample"><code>.ratio-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.ratio-grid &gt; .ratio-full { grid-column: 1 / -1; }</code></pre>
+            <p class="ratio-note"><code>minmax(0, ...)</code> laat de kolommen ook op kleine schermen krimpen. Dit voorbeeld verdeelt kolombreedtes; <code>grid-column: span 2</code> zou twee kolommen én de gap ertussen beslaan.</p>
+          </section>
+        </section>
         <section class="demo-panel" aria-labelledby="dynamisch">
-          <p class="eyebrow">04 · Dynamisch</p>
+          <p class="eyebrow">05 · Dynamisch</p>
           <h2 id="dynamisch">JavaScript verandert de toestand</h2>
           <p>
             De knop past de waarde in de DOM aan. De oorspronkelijke HTML
@@ -160,14 +475,67 @@
   output.textContent = count;
 });</code></pre>
         </section>
+        <!-- Automatische tools ondersteunen de controle; handmatig toetsenbordtesten blijft nodig. -->
+        <section class="demo-panel" aria-labelledby="accessibility">
+          <p class="eyebrow">06 · Toegankelijkheid</p>
+          <h2 id="accessibility">Bekijk, verklaar en verbeter</h2>
+          <h3>WAVE: fouten visueel uitleggen</h3>
+          <p>
+            <a href="https://wave.webaim.org/extension/"
+              >Installeer de officiële WAVE-browserextensie</a
+            >
+            voor Chrome, Edge of Firefox. Open een pagina en activeer WAVE.
+            Bekijk Errors, Contrast, Alerts en Structure; selecteer een icoon om
+            het betreffende element en de uitleg te zien.
+          </p>
+          <p>
+            Lesopdracht: verwijder tijdelijk het <code>alt</code>-attribuut van
+            een foto in Developer Tools en voer WAVE opnieuw uit. Herstel daarna
+            <code>alt=""</code> voor een decoratieve foto. Een informatieve
+            afbeelding krijgt juist een beschrijving van de relevante inhoud.
+            Een waarschuwing vraagt beoordeling; deze is niet automatisch een
+            fout.
+          </p>
+          <h3>Lighthouse: technische eindcheck</h3>
+          <p>
+            Open de pagina in Chrome, open Developer Tools en kies Lighthouse.
+            Selecteer Accessibility, Performance, Best Practices en SEO, kies
+            Mobile of Desktop en start de analyse. Vergelijk het rapport vóór en
+            na een verbetering.
+            <a href="https://developer.chrome.com/docs/lighthouse/overview"
+              >Uitleg en installatie van Lighthouse</a
+            >.
+          </p>
+          <h3>HTML en handmatige controle</h3>
+          <p>
+            Controleer elke pagina met de
+            <a href="https://validator.w3.org/nu/">W3C Nu HTML Checker</a>.
+            Gebruik Tab, Shift+Tab, Enter en Spatie: bereik de skiplink, filters
+            en demo-opties en controleer de zichtbare focus. Test ook 200% zoom
+            en een smal scherm. Een automatische score bewijst geen volledige
+            toegankelijkheid.
+          </p>
+          <p>
+            <a href="https://www.w3.org/WAI/tutorials/images/"
+              >W3C-uitleg over toegankelijke afbeeldingen</a
+            >
+          </p>
+        </section>
       </div>
     </main>
     <footer class="site-footer">
       <div class="container footer-inner">
-        <p><strong>Campo Internet</strong><br />Company and Projects</p>
-        <p>Den Haag · <span data-current-year>2026</span></p>
+        <p>
+          <strong>HTML &amp; CSS demonstratie</strong><br>Leren door te bouwen
+        </p>
+        <p>Lesmateriaal · <span data-current-year>2026</span></p>
+        <p class="image-credit">
+          Logo: <a href="https://www.w3.org/html/logo/">W3C HTML5</a> ·
+          <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>
+        </p>
       </div>
     </footer>
+    <!-- defer voert de gedeelde interacties uit nadat de HTML is ingelezen. -->
     <script src="js/site.js" defer></script>
   </body>
 </html>
