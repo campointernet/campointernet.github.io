@@ -74,28 +74,9 @@
             class="code-sample"
           ><code>&lt;h2&gt;De inhoud staat al in de HTML&lt;/h2&gt;&lt;p&gt;Dit is statische inhoud.&lt;/p&gt;</code></pre>
         </section>
-        <section class="demo-panel" aria-labelledby="animatie">
-  <p class="eyebrow">02 · CSS-animatie</p><h2 id="animatie">Een kleine beweging met CSS</h2>
-  <!-- Decoratieve SVG: vectorvormen blijven scherp; CSS animeert alleen de stip. -->
-<svg class="code-motion" viewBox="0 0 160 48" width="160" height="48" aria-hidden="true" focusable="false">
-  <path d="m28 12-12 12 12 12m104-24 12 12-12 12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M48 24h64" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="2"/>
-  <circle class="code-motion-dot" cx="56" cy="24" r="5" fill="currentColor"/>
-</svg>
-  <p>Deze SVG tekent scherpe vectorvormen. De stip beweegt subtiel heen en terug met CSS. De drie kaarten op de homepage bewegen kort zodra ze in beeld komen. De animaties stoppen vanzelf en blijven uit bij de systeeminstelling ‘minder beweging’.</p>
-  <pre class="code-sample"><code>/* Eén korte animatie; geen eindeloze beweging. */
-.code-motion-dot { animation: code-travel 2.4s ease-in-out 1; }
-@keyframes code-travel {
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(48px); }
-}
-/* Respecteer de voorkeur voor minder beweging. */
-@media (prefers-reduced-motion: reduce) {
-  .code-motion-dot { animation: none; }
-}</code></pre>
-</section>
+        
         <section class="demo-panel" aria-labelledby="boxmodel">
-          <p class="eyebrow">03 · Box-model</p>
+          <p class="eyebrow">02 · Box-model</p>
           <h2 id="boxmodel">Dezelfde CSS-breedte, een ander totaal</h2>
           <p><strong>Waarom handig?</strong> Met <code>box-sizing: border-box</code> kun je een invoerveld <code>width: 100%</code> geven en padding toevoegen, zonder dat het daardoor breder wordt dan zijn container. Padding en border vallen binnen die 100%.</p>
           <p>
@@ -142,7 +123,7 @@
    Voor de inhoud blijft 280 - 32 - 32 - 16 - 16 = 184px over. */</code></pre>
         </section>
         <section class="demo-panel" aria-labelledby="video">
-  <p class="eyebrow">04 · Video</p><h2 id="video">Een videospeler met semantische HTML</h2>
+  <p class="eyebrow">03 · Video</p><h2 id="video">Een videospeler met semantische HTML</h2>
   <p><code>&lt;video&gt;</code> beschrijft een videospeler; <code>&lt;source&gt;</code> geeft het mediabestand en bestandstype aan. De browser verzorgt de bediening, zonder eigen JavaScript.</p>
   <figure class="video-example">
     <!-- controls toont bediening; metadata beperkt vooraf laden; playsinline speelt binnen de pagina op mobiel. -->
@@ -167,7 +148,7 @@
   <p>Gebruik bij een video met spraak ook ondertiteling via <code>&lt;track kind="captions"&gt;</code>. Zet relevante visuele informatie daarnaast in een tekstbeschrijving.</p>
 </section>
         <section class="demo-panel" aria-labelledby="flexbox">
-          <p class="eyebrow">05 · Flexbox</p>
+          <p class="eyebrow">04 · Flexbox</p>
           <h2 id="flexbox">Eén richting, meerdere verdelingen</h2>
           <p>
             De container heeft <code>display: flex</code>. Kies hoe de vrije
@@ -361,7 +342,7 @@
           </section>
         </section>
         <section class="demo-panel" aria-labelledby="grid">
-          <p class="eyebrow">06 · CSS Grid</p>
+          <p class="eyebrow">05 · CSS Grid</p>
           <h2 id="grid">Vier blokken, twee richtingen</h2>
           <p>
             Deze container gebruikt <code>display: grid</code> met twee kolommen
@@ -565,6 +546,26 @@ align-content: start;   /* Hele raster verticaal aan het begin. */
             <p class="ratio-note"><code>minmax(0, ...)</code> laat de kolommen ook op kleine schermen krimpen. Dit voorbeeld verdeelt kolombreedtes; <code>grid-column: span 2</code> zou twee kolommen én de gap ertussen beslaan.</p>
           </section>
         </section>
+        <section class="demo-panel" aria-labelledby="animatie">
+  <p class="eyebrow">06 · CSS-animatie</p><h2 id="animatie">Een kleine beweging met CSS</h2>
+  <!-- Decoratieve SVG: vectorvormen blijven scherp; CSS animeert alleen de stip. -->
+<svg class="code-motion" viewBox="0 0 160 48" width="160" height="48" aria-hidden="true" focusable="false">
+  <path d="m28 12-12 12 12 12m104-24 12 12-12 12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M48 24h64" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="2"/>
+  <circle class="code-motion-dot" cx="56" cy="24" r="5" fill="currentColor"/>
+</svg>
+  <p>Deze SVG tekent scherpe vectorvormen. De stip beweegt subtiel heen en terug met CSS. De drie kaarten op de homepage bewegen kort zodra ze in beeld komen. De animaties stoppen vanzelf en blijven uit bij de systeeminstelling ‘minder beweging’.</p>
+  <pre class="code-sample"><code>/* Eén korte animatie; geen eindeloze beweging. */
+.code-motion-dot { animation: code-travel 2.4s ease-in-out 1; }
+@keyframes code-travel {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(48px); }
+}
+/* Respecteer de voorkeur voor minder beweging. */
+@media (prefers-reduced-motion: reduce) {
+  .code-motion-dot { animation: none; }
+}</code></pre>
+</section>
         <section class="demo-panel" aria-labelledby="dynamisch">
           <p class="eyebrow">07 · JavaScript</p>
           <h2 id="dynamisch">JavaScript verandert de toestand</h2>

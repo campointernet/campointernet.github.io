@@ -841,7 +841,7 @@ img.project-visual {
 @keyframes code-travel { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(48px); } }
 /* De video past zich aan de container aan en behoudt zijn beeldverhouding. */
 .video-example { margin: 1.5rem 0; }
-.video-example video { display: block; width: 100%; height: auto; border-radius: .7rem; background: var(--navy-950); }
+.video-example video { display: block; width: 50%; height: auto; border-radius: .7rem; background: var(--navy-950); }
 .video-example figcaption { margin-top: .75rem; color: var(--muted); font-size: .92rem; }
 video:focus-visible { outline: 3px solid var(--coral); outline-offset: 4px; }
 /* Geen automatische beweging wanneer de gebruiker dat liever niet heeft. */
