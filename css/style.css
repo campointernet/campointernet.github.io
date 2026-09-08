@@ -830,33 +830,123 @@ img.project-visual {
 }
 
 /* Eenmalige beweging na binnenkomst; transform verandert de layoutmaten niet. */
-.motion-cards.is-in-view > .card { animation: card-lift 1.8s ease-in-out 1 both; }
-.motion-cards.is-in-view > .card:nth-child(2) { animation-delay: .15s; }
-.motion-cards.is-in-view > .card:nth-child(3) { animation-delay: .3s; }
-@keyframes card-lift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+.motion-cards.is-in-view > .card {
+  animation: card-lift 1.8s ease-in-out 1 both;
+}
+.motion-cards.is-in-view > .card:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.motion-cards.is-in-view > .card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+@keyframes card-lift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
 /* De SVG gebruikt currentColor om de tekstkleur over te nemen. */
-.code-motion { display: block; max-width: 100%; margin-bottom: 1rem; color: var(--cyan-dark); }
-.dark-section .code-motion { color: var(--cyan); }
-.code-motion.is-in-view .code-motion-dot { animation: code-travel 2.4s ease-in-out 1; }
-@keyframes code-travel { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(48px); } }
+.code-motion {
+  display: block;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  color: var(--cyan-dark);
+}
+.dark-section .code-motion {
+  color: var(--cyan);
+}
+.code-motion.is-in-view .code-motion-dot {
+  animation: code-travel 2.4s ease-in-out 1;
+}
+@keyframes code-travel {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(48px);
+  }
+}
 /* De video past zich aan de container aan en behoudt zijn beeldverhouding. */
-.video-example { margin: 1.5rem 0; }
-.video-example video { display: block; width: 50%; height: auto; border-radius: .7rem; background: var(--navy-950); }
-.video-example figcaption { margin-top: .75rem; color: var(--muted); font-size: .92rem; }
-video:focus-visible { outline: 3px solid var(--coral); outline-offset: 4px; }
+.video-example {
+  margin: 1.5rem 0;
+}
+.video-example video {
+  display: block;
+  width: 50%;
+  height: auto;
+  border-radius: 0.7rem;
+  background: var(--navy-950);
+}
+.video-example figcaption {
+  margin-top: 0.75rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+video:focus-visible {
+  outline: 3px solid var(--coral);
+  outline-offset: 4px;
+}
 /* Geen automatische beweging wanneer de gebruiker dat liever niet heeft. */
 @media (prefers-reduced-motion: reduce) {
-  .motion-cards.is-in-view > .card, .code-motion.is-in-view .code-motion-dot { animation: none; }
+  .motion-cards.is-in-view > .card,
+  .code-motion.is-in-view .code-motion-dot {
+    animation: none;
+  }
 }
 
 /* Semantisch formulier: labels boven velden; border-box houdt padding binnen de breedte. */
-.lesson-form { max-width: 38rem; margin-block: 1.5rem; }
-.lesson-form fieldset { min-width: 0; margin: 0 0 1rem; padding: 1.25rem; border: 1px solid #8aa4aa; border-radius: .7rem; }
-.lesson-form legend { padding-inline: .35rem; font-weight: 800; }
-.form-field + .form-field { margin-top: 1rem; }
-.form-field label { display: block; margin-bottom: .35rem; font-weight: 750; }
-.form-field input, .form-field textarea { display: block; width: 100%; padding: .7rem; border: 1px solid var(--muted); border-radius: .35rem; font: inherit; color: var(--ink); background: var(--white); }
-.form-field textarea { resize: vertical; }
-.form-field input:focus-visible, .form-field textarea:focus-visible { outline: 3px solid var(--cyan-dark); outline-offset: 3px; }
-.field-help { margin: .35rem 0 0; color: var(--muted); font-size: .9rem; }
-.lesson-form button:disabled { opacity: .65; cursor: not-allowed; }
+.lesson-form {
+  max-width: 38rem;
+  margin-block: 1.5rem;
+}
+.lesson-form fieldset {
+  min-width: 0;
+  margin: 0 0 1rem;
+  padding: 1.25rem;
+  border: 1px solid #8aa4aa;
+  border-radius: 0.7rem;
+}
+.lesson-form legend {
+  padding-inline: 0.35rem;
+  font-weight: 800;
+}
+.form-field + .form-field {
+  margin-top: 1rem;
+}
+.form-field label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 750;
+}
+.form-field input,
+.form-field textarea {
+  display: block;
+  width: 100%;
+  padding: 0.7rem;
+  border: 1px solid var(--muted);
+  border-radius: 0.35rem;
+  font: inherit;
+  color: var(--ink);
+  background: var(--white);
+}
+.form-field textarea {
+  resize: vertical;
+}
+.form-field input:focus-visible,
+.form-field textarea:focus-visible {
+  outline: 3px solid var(--cyan-dark);
+  outline-offset: 3px;
+}
+.field-help {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.lesson-form button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}

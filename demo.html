@@ -2,24 +2,27 @@
 <html lang="nl">
   <head>
     <!-- UTF-8 ondersteunt accenten; viewport laat de layout aansluiten op het scherm. -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Interactieve lesdemo over statisch, dynamisch, Flexbox, CSS Grid en toegankelijkheid.">
-    <meta name="theme-color" content="#071521">
+      content="Interactieve lesdemo over statisch, dynamisch, Flexbox, CSS Grid en toegankelijkheid."
+    />
+    <meta name="theme-color" content="#071521" />
     <!-- Open Graph (property="og:...") bepaalt de linkpreview bij delen op sociale media. -->
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="website" />
     <meta
       property="og:title"
-      content="Live demo | HTML &amp; CSS demonstratie">
+      content="Live demo | HTML &amp; CSS demonstratie"
+    />
     <meta
       property="og:description"
-      content="Flexbox, CSS Grid, border-box en toegankelijkheid zichtbaar uitgelegd.">
-    <meta property="og:image" content="https://picsum.photos/id/0/1200/630">
+      content="Flexbox, CSS Grid, border-box en toegankelijkheid zichtbaar uitgelegd."
+    />
+    <meta property="og:image" content="https://picsum.photos/id/0/1200/630" />
     <title>Live demo | HTML & CSS</title>
-    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <a class="skip-link" href="#hoofdinhoud">Ga naar de inhoud</a>
@@ -34,7 +37,8 @@
             src="https://www.w3.org/html/logo/downloads/HTML5_Badge_64.png"
             alt=""
             width="40"
-            height="40"><span>HTML &amp; CSS demonstratie</span></a
+            height="40"
+          /><span>HTML &amp; CSS demonstratie</span></a
         >
         <nav aria-label="Hoofdnavigatie">
           <ul class="nav-list">
@@ -74,11 +78,191 @@
             class="code-sample"
           ><code>&lt;h2&gt;De inhoud staat al in de HTML&lt;/h2&gt;&lt;p&gt;Dit is statische inhoud.&lt;/p&gt;</code></pre>
         </section>
-        
+
+        <section class="demo-panel" aria-labelledby="video">
+          <p class="eyebrow">02 · Video</p>
+          <h2 id="video">Een videospeler met semantische HTML</h2>
+          <p>
+            <code>&lt;video&gt;</code> beschrijft een videospeler;
+            <code>&lt;source&gt;</code> geeft het mediabestand en bestandstype
+            aan. De browser verzorgt de bediening, zonder eigen JavaScript.
+          </p>
+          <figure class="video-example">
+            <!-- controls toont bediening; metadata beperkt vooraf laden; playsinline speelt binnen de pagina op mobiel. -->
+            <video
+              controls
+              preload="metadata"
+              playsinline
+              width="960"
+              height="540"
+              aria-label="Close-up van een bloemknop"
+              aria-describedby="video-description"
+            >
+              <source
+                src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+                type="video/mp4"
+              />
+              Je browser ondersteunt deze videospeler niet.
+              <a
+                href="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+                >Open de MP4-video</a
+              >.
+            </video>
+            <figcaption id="video-description">
+              Beeldbeschrijving: een close-up van een roze bloemknop tussen
+              groene bladeren, tegen een onscherpe achtergrond. Dit is een kort
+              voorbeeld zonder gesproken uitleg.
+            </figcaption>
+          </figure>
+          <p>
+            Bron:
+            <a
+              href="https://interactive-examples.mdn.mozilla.net/pages/tabbed/video.html"
+              >MDN-videovoorbeeld (CC0)</a
+            >.
+            <a
+              href="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+              >Open het externe MP4-bestand</a
+            >
+            als afspelen niet lukt. Internet is nodig.
+          </p>
+          <pre
+            class="code-sample"
+          ><code>&lt;!-- De bezoeker start de video zelf: geen autoplay. --&gt;
+&lt;video controls preload="metadata" playsinline width="960" height="540"&gt;
+  &lt;!-- source noemt de externe bron; type vertelt welk formaat dit is. --&gt;
+  &lt;source
+    src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+    type="video/mp4"&gt;
+  Je browser ondersteunt deze videospeler niet.
+&lt;/video&gt;
+&lt;!-- controls: afspelen, pauze en andere browserbediening.
+     preload="metadata": vraag vooraf alleen video-informatie op.
+     playsinline: speel op mobiel binnen de pagina. --&gt;</code></pre>
+          <p>
+            Gebruik bij een video met spraak ook ondertiteling via
+            <code>&lt;track kind="captions"&gt;</code>. Zet relevante visuele
+            informatie daarnaast in een tekstbeschrijving.
+          </p>
+        </section>
+        <section class="demo-panel" aria-labelledby="formulier">
+          <p class="eyebrow">03 · Formulier</p>
+          <h2 id="formulier">Een formulier met duidelijke betekenis</h2>
+          <p>
+            <code>&lt;form&gt;</code> bundelt invoervelden. Elk veld heeft een
+            zichtbaar <code>&lt;label&gt;</code>; <code>for</code> verwijst naar
+            het <code>id</code> van het veld.
+            <code>&lt;fieldset&gt;</code> groepeert velden en
+            <code>&lt;legend&gt;</code> geeft die groep een naam.
+          </p>
+          <p id="form-help">
+            Alle velden zijn verplicht. Gebruik verzonnen gegevens: dit
+            lesvoorbeeld controleert de invoer alleen in je browser en verstuurt
+            of bewaart niets.
+          </p>
+          <!-- Zonder JavaScript blijft de knop uitgeschakeld, zodat dit voorbeeld nooit gegevens verstuurt. -->
+          <form
+            id="lesson-form"
+            class="lesson-form"
+            aria-describedby="form-help"
+          >
+            <fieldset>
+              <legend>Jouw oefenbericht</legend>
+              <div class="form-field">
+                <!-- for en id koppelen het label aan de invoer; required activeert browservalidatie. -->
+                <label for="lesson-name">Naam (verplicht)</label>
+                <input
+                  id="lesson-name"
+                  name="name"
+                  type="text"
+                  autocomplete="name"
+                  required
+                />
+              </div>
+              <div class="form-field">
+                <label for="lesson-email">E-mailadres (verplicht)</label>
+                <!-- type=email controleert de vorm; het bewijst niet dat het adres bestaat. -->
+                <input
+                  id="lesson-email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  aria-describedby="email-help"
+                  required
+                />
+                <p id="email-help" class="field-help">
+                  Bijvoorbeeld student@example.com.
+                </p>
+              </div>
+              <div class="form-field">
+                <label for="lesson-message">Bericht (verplicht)</label>
+                <textarea
+                  id="lesson-message"
+                  name="message"
+                  rows="3"
+                  required
+                ></textarea>
+              </div>
+            </fieldset>
+            <button
+              class="control-button"
+              type="submit"
+              id="form-check"
+              disabled
+            >
+              Controleer het formulier
+            </button>
+            <!-- role=status laat de uitkomst voorlezen zonder de focus te verplaatsen. -->
+            <p id="form-status" class="status" role="status"></p>
+          </form>
+          <noscript
+            ><p>
+              Zet JavaScript aan om de oefenknop te gebruiken. De velden en
+              labels blijven zichtbaar.
+            </p></noscript
+          >
+          <pre
+            class="code-sample"
+          ><code>&lt;!-- Vereenvoudigde structuur van het voorbeeld hierboven. --&gt;
+&lt;form&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Jouw oefenbericht&lt;/legend&gt;
+
+    &lt;!-- for verwijst naar id: label en invoer horen bij elkaar. --&gt;
+    &lt;label for="email"&gt;E-mailadres (verplicht)&lt;/label&gt;
+    &lt;input id="email" name="email" type="email"
+           autocomplete="email" required&gt;
+
+    &lt;!-- name is de veldnaam bij een echte verzending.
+         type="email" controleert de vorm van het adres.
+         autocomplete helpt bij automatisch invullen.
+         required maakt het veld verplicht. --&gt;
+  &lt;/fieldset&gt;
+  &lt;button type="submit"&gt;Controleer het formulier&lt;/button&gt;
+&lt;/form&gt;
+
+/* JavaScript houdt de verzending in deze demo tegen: */
+form.addEventListener("submit", (event) =&gt; {
+  event.preventDefault(); // Geen netwerkverzoek of paginawissel.
+});</code></pre>
+          <p>
+            Probeer eerst lege velden of een ongeldig e-mailadres. De browser
+            geeft feedback bij het veld. In een echte toepassing stel je ook de
+            bestemming (<code>action</code>) en verzendmethode
+            (<code>method</code>) in en controleert de server de invoer opnieuw.
+          </p>
+        </section>
+
         <section class="demo-panel" aria-labelledby="boxmodel">
-          <p class="eyebrow">02 · Box-model</p>
+          <p class="eyebrow">04 · Box-model</p>
           <h2 id="boxmodel">Dezelfde CSS-breedte, een ander totaal</h2>
-          <p><strong>Waarom handig?</strong> Met <code>box-sizing: border-box</code> kun je een invoerveld <code>width: 100%</code> geven en padding toevoegen, zonder dat het daardoor breder wordt dan zijn container. Padding en border vallen binnen die 100%.</p>
+          <p>
+            <strong>Waarom handig?</strong> Met
+            <code>box-sizing: border-box</code> kun je een invoerveld
+            <code>width: 100%</code> geven en padding toevoegen, zonder dat het
+            daardoor breder wordt dan zijn container. Padding en border vallen
+            binnen die 100%.
+          </p>
           <p>
             Beide blokken hebben <code>width: 280px</code>,
             <code>padding: 32px</code> en <code>border: 16px</code>. Bij
@@ -88,7 +272,7 @@
           <div class="box-row">
             <div>
               <div class="measure-box content-box-demo">
-                <strong>content-box</strong><br>breedte geldt alleen voor
+                <strong>content-box</strong><br />breedte geldt alleen voor
                 content
               </div>
               <span class="measure-label" id="content-measure"
@@ -97,7 +281,7 @@
             </div>
             <div>
               <div class="measure-box border-box-demo">
-                <strong>border-box</strong><br>padding en border tellen mee
+                <strong>border-box</strong><br />padding en border tellen mee
               </div>
               <span class="measure-label" id="border-measure"
                 >totaal meten…</span
@@ -122,85 +306,7 @@
 /* Totale breedte: 280px.
    Voor de inhoud blijft 280 - 32 - 32 - 16 - 16 = 184px over. */</code></pre>
         </section>
-        <section class="demo-panel" aria-labelledby="video">
-  <p class="eyebrow">03 · Video</p><h2 id="video">Een videospeler met semantische HTML</h2>
-  <p><code>&lt;video&gt;</code> beschrijft een videospeler; <code>&lt;source&gt;</code> geeft het mediabestand en bestandstype aan. De browser verzorgt de bediening, zonder eigen JavaScript.</p>
-  <figure class="video-example">
-    <!-- controls toont bediening; metadata beperkt vooraf laden; playsinline speelt binnen de pagina op mobiel. -->
-    <video controls preload="metadata" playsinline width="960" height="540" aria-label="Close-up van een bloemknop" aria-describedby="video-description">
-      <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
-      Je browser ondersteunt deze videospeler niet. <a href="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4">Open de MP4-video</a>.
-    </video>
-    <figcaption id="video-description">Beeldbeschrijving: een close-up van een roze bloemknop tussen groene bladeren, tegen een onscherpe achtergrond. Dit is een kort voorbeeld zonder gesproken uitleg.</figcaption>
-  </figure>
-  <p>Bron: <a href="https://interactive-examples.mdn.mozilla.net/pages/tabbed/video.html">MDN-videovoorbeeld (CC0)</a>. <a href="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4">Open het externe MP4-bestand</a> als afspelen niet lukt. Internet is nodig.</p>
-  <pre class="code-sample"><code>&lt;!-- De bezoeker start de video zelf: geen autoplay. --&gt;
-&lt;video controls preload="metadata" playsinline width="960" height="540"&gt;
-  &lt;!-- source noemt de externe bron; type vertelt welk formaat dit is. --&gt;
-  &lt;source
-    src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
-    type="video/mp4"&gt;
-  Je browser ondersteunt deze videospeler niet.
-&lt;/video&gt;
-&lt;!-- controls: afspelen, pauze en andere browserbediening.
-     preload="metadata": vraag vooraf alleen video-informatie op.
-     playsinline: speel op mobiel binnen de pagina. --&gt;</code></pre>
-  <p>Gebruik bij een video met spraak ook ondertiteling via <code>&lt;track kind="captions"&gt;</code>. Zet relevante visuele informatie daarnaast in een tekstbeschrijving.</p>
-</section>
-        <section class="demo-panel" aria-labelledby="formulier">
-  <p class="eyebrow">04 · Formulier</p>
-  <h2 id="formulier">Een formulier met duidelijke betekenis</h2>
-  <p><code>&lt;form&gt;</code> bundelt invoervelden. Elk veld heeft een zichtbaar <code>&lt;label&gt;</code>; <code>for</code> verwijst naar het <code>id</code> van het veld. <code>&lt;fieldset&gt;</code> groepeert velden en <code>&lt;legend&gt;</code> geeft die groep een naam.</p>
-  <p id="form-help">Alle velden zijn verplicht. Gebruik verzonnen gegevens: dit lesvoorbeeld controleert de invoer alleen in je browser en verstuurt of bewaart niets.</p>
-  <!-- Zonder JavaScript blijft de knop uitgeschakeld, zodat dit voorbeeld nooit gegevens verstuurt. -->
-  <form id="lesson-form" class="lesson-form" aria-describedby="form-help">
-    <fieldset>
-      <legend>Jouw oefenbericht</legend>
-      <div class="form-field">
-        <!-- for en id koppelen het label aan de invoer; required activeert browservalidatie. -->
-        <label for="lesson-name">Naam (verplicht)</label>
-        <input id="lesson-name" name="name" type="text" autocomplete="name" required>
-      </div>
-      <div class="form-field">
-        <label for="lesson-email">E-mailadres (verplicht)</label>
-        <!-- type=email controleert de vorm; het bewijst niet dat het adres bestaat. -->
-        <input id="lesson-email" name="email" type="email" autocomplete="email" aria-describedby="email-help" required>
-        <p id="email-help" class="field-help">Bijvoorbeeld student@example.com.</p>
-      </div>
-      <div class="form-field">
-        <label for="lesson-message">Bericht (verplicht)</label>
-        <textarea id="lesson-message" name="message" rows="3" required></textarea>
-      </div>
-    </fieldset>
-    <button class="control-button" type="submit" id="form-check" disabled>Controleer het formulier</button>
-    <!-- role=status laat de uitkomst voorlezen zonder de focus te verplaatsen. -->
-    <p id="form-status" class="status" role="status"></p>
-  </form>
-  <noscript><p>Zet JavaScript aan om de oefenknop te gebruiken. De velden en labels blijven zichtbaar.</p></noscript>
-  <pre class="code-sample"><code>&lt;!-- Vereenvoudigde structuur van het voorbeeld hierboven. --&gt;
-&lt;form&gt;
-  &lt;fieldset&gt;
-    &lt;legend&gt;Jouw oefenbericht&lt;/legend&gt;
 
-    &lt;!-- for verwijst naar id: label en invoer horen bij elkaar. --&gt;
-    &lt;label for="email"&gt;E-mailadres (verplicht)&lt;/label&gt;
-    &lt;input id="email" name="email" type="email"
-           autocomplete="email" required&gt;
-
-    &lt;!-- name is de veldnaam bij een echte verzending.
-         type="email" controleert de vorm van het adres.
-         autocomplete helpt bij automatisch invullen.
-         required maakt het veld verplicht. --&gt;
-  &lt;/fieldset&gt;
-  &lt;button type="submit"&gt;Controleer het formulier&lt;/button&gt;
-&lt;/form&gt;
-
-/* JavaScript houdt de verzending in deze demo tegen: */
-form.addEventListener("submit", (event) =&gt; {
-  event.preventDefault(); // Geen netwerkverzoek of paginawissel.
-});</code></pre>
-  <p>Probeer eerst lege velden of een ongeldig e-mailadres. De browser geeft feedback bij het veld. In een echte toepassing stel je ook de bestemming (<code>action</code>) en verzendmethode (<code>method</code>) in en controleert de server de invoer opnieuw.</p>
-</section>
         <section class="demo-panel" aria-labelledby="flexbox">
           <p class="eyebrow">05 · Flexbox</p>
           <h2 id="flexbox">Eén richting, meerdere verdelingen</h2>
@@ -353,15 +459,36 @@ form.addEventListener("submit", (event) =&gt; {
           <!-- Deze aparte variant vult de rij; de uitlijnknoppen hierboven bedienen alleen A, B en C. -->
           <section class="ratio-example" aria-labelledby="flex-ratio-title">
             <p class="eyebrow">Variant · Flexibele breedtes</p>
-            <h3 id="flex-ratio-title">Twee gelijk, één dubbel, één volle rij</h3>
-            <p>A en B krijgen ieder één deel, C krijgt twee delen. Flexbox trekt eerst de twee gaps van de beschikbare rijbreedte af en verdeelt de rest in <strong>1 : 1 : 2</strong>. D begint op de volgende rij en vult die helemaal.</p>
+            <h3 id="flex-ratio-title">
+              Twee gelijk, één dubbel, één volle rij
+            </h3>
+            <p>
+              A en B krijgen ieder één deel, C krijgt twee delen. Flexbox trekt
+              eerst de twee gaps van de beschikbare rijbreedte af en verdeelt de
+              rest in <strong>1 : 1 : 2</strong>. D begint op de volgende rij en
+              vult die helemaal.
+            </p>
             <div class="ratio-flex ratio-stage">
-              <div class="ratio-tile"><span><strong>A</strong><small>1 deel</small></span></div>
-              <div class="ratio-tile"><span><strong>B</strong><small>1 deel</small></span></div>
-              <div class="ratio-tile ratio-double"><span><strong>C</strong><small>2 delen</small></span></div>
-              <div class="ratio-tile ratio-full"><span><strong>D</strong><small>100% · volledige rij</small></span></div>
+              <div class="ratio-tile">
+                <span><strong>A</strong><small>1 deel</small></span>
+              </div>
+              <div class="ratio-tile">
+                <span><strong>B</strong><small>1 deel</small></span>
+              </div>
+              <div class="ratio-tile ratio-double">
+                <span><strong>C</strong><small>2 delen</small></span>
+              </div>
+              <div class="ratio-tile ratio-full">
+                <span
+                  ><strong>D</strong><small>100% · volledige rij</small></span
+                >
+              </div>
             </div>
-            <p class="ratio-note">Bij een rij van 800 px en een gap van 16 px blijft 768 px over: A = 192 px, B = 192 px en C = 384 px. D = 800 px: op zijn eigen rij zijn er geen horizontale gaps om af te trekken.</p>
+            <p class="ratio-note">
+              Bij een rij van 800 px en een gap van 16 px blijft 768 px over: A
+              = 192 px, B = 192 px en C = 384 px. D = 800 px: op zijn eigen rij
+              zijn er geen horizontale gaps om af te trekken.
+            </p>
             <pre class="code-sample"><code>.ratio-flex {
   display: flex;    /* Zet de blokken naast elkaar. */
   flex-wrap: wrap; /* Laat het volle blok naar een eigen rij gaan. */
@@ -392,7 +519,12 @@ form.addEventListener("submit", (event) =&gt; {
 /* Flexbox verdeelt de ruimte per rij.
    Het aantal delen is de SOM van de groeifactoren,
    niet het aantal blokken: hier 3 blokken, maar 4 delen. */</code></pre>
-            <p class="ratio-note"><code>flex: 1 1 0</code> betekent: groeien met factor 1, krimpen met factor 1 en beginnen bij breedte 0. De buitenste blokken hebben geen padding of border; de tekst krijgt ruimte via een binnenste span. Zo is C ook werkelijk twee keer zo breed als A.</p>
+            <p class="ratio-note">
+              <code>flex: 1 1 0</code> betekent: groeien met factor 1, krimpen
+              met factor 1 en beginnen bij breedte 0. De buitenste blokken
+              hebben geen padding of border; de tekst krijgt ruimte via een
+              binnenste span. Zo is C ook werkelijk twee keer zo breed als A.
+            </p>
           </section>
         </section>
         <section class="demo-panel" aria-labelledby="grid">
@@ -570,14 +702,33 @@ align-content: start;   /* Hele raster verticaal aan het begin. */
           <section class="ratio-example" aria-labelledby="grid-ratio-title">
             <p class="eyebrow">Variant · Kolommen in verhouding</p>
             <h3 id="grid-ratio-title">Een brede kolom naast twee smalle</h3>
-            <p>Met <code>2fr 1fr 1fr</code> verdeelt Grid de breedte na aftrek van de twee gaps in <strong>2 : 1 : 1</strong>. A is twee keer zo breed als B en C. D loopt daaronder van de eerste tot de laatste rasterlijn.</p>
+            <p>
+              Met <code>2fr 1fr 1fr</code> verdeelt Grid de breedte na aftrek
+              van de twee gaps in <strong>2 : 1 : 1</strong>. A is twee keer zo
+              breed als B en C. D loopt daaronder van de eerste tot de laatste
+              rasterlijn.
+            </p>
             <div class="ratio-grid ratio-stage">
-              <div class="ratio-tile ratio-double"><span><strong>A</strong><small>2 delen</small></span></div>
-              <div class="ratio-tile"><span><strong>B</strong><small>1 deel</small></span></div>
-              <div class="ratio-tile"><span><strong>C</strong><small>1 deel</small></span></div>
-              <div class="ratio-tile ratio-full"><span><strong>D</strong><small>1 / -1 · alle kolommen</small></span></div>
+              <div class="ratio-tile ratio-double">
+                <span><strong>A</strong><small>2 delen</small></span>
+              </div>
+              <div class="ratio-tile">
+                <span><strong>B</strong><small>1 deel</small></span>
+              </div>
+              <div class="ratio-tile">
+                <span><strong>C</strong><small>1 deel</small></span>
+              </div>
+              <div class="ratio-tile ratio-full">
+                <span
+                  ><strong>D</strong><small>1 / -1 · alle kolommen</small></span
+                >
+              </div>
             </div>
-            <p class="ratio-note">Bij 800 px en een gap van 16 px worden de kolommen 384, 192 en 192 px. Het brede blok D beslaat 800 px, inclusief de ruimte van de tussenliggende gaps.</p>
+            <p class="ratio-note">
+              Bij 800 px en een gap van 16 px worden de kolommen 384, 192 en 192
+              px. Het brede blok D beslaat 800 px, inclusief de ruimte van de
+              tussenliggende gaps.
+            </p>
             <pre class="code-sample"><code>.ratio-grid {
   display: grid; /* Maak een raster van rijen en kolommen. */
 
@@ -597,19 +748,58 @@ align-content: start;   /* Hele raster verticaal aan het begin. */
 /* Dit blok beslaat alle kolommen, inclusief de gapruimte.
    Voorbeeld: 800px - 2 gaps van 16px = 768px.
    Kolommen: 384px, 192px, 192px. Het volle blok: 800px. */</code></pre>
-            <p class="ratio-note"><code>minmax(0, ...)</code> laat de kolommen ook op kleine schermen krimpen. Dit voorbeeld verdeelt kolombreedtes; <code>grid-column: span 2</code> zou twee kolommen én de gap ertussen beslaan.</p>
+            <p class="ratio-note">
+              <code>minmax(0, ...)</code> laat de kolommen ook op kleine
+              schermen krimpen. Dit voorbeeld verdeelt kolombreedtes;
+              <code>grid-column: span 2</code> zou twee kolommen én de gap
+              ertussen beslaan.
+            </p>
           </section>
         </section>
         <section class="demo-panel" aria-labelledby="animatie">
-  <p class="eyebrow">07 · CSS-animatie</p><h2 id="animatie">Een kleine beweging met CSS</h2>
-  <!-- Decoratieve SVG: vectorvormen blijven scherp; CSS animeert alleen de stip. -->
-<svg class="code-motion" viewBox="0 0 160 48" width="160" height="48" aria-hidden="true" focusable="false">
-  <path d="m28 12-12 12 12 12m104-24 12 12-12 12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M48 24h64" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="2"/>
-  <circle class="code-motion-dot" cx="56" cy="24" r="5" fill="currentColor"/>
-</svg>
-  <p>Deze SVG tekent scherpe vectorvormen. De stip beweegt subtiel heen en terug met CSS. De drie kaarten op de homepage bewegen kort zodra ze in beeld komen. De animaties stoppen vanzelf en blijven uit bij de systeeminstelling ‘minder beweging’.</p>
-  <pre class="code-sample"><code>/* Eén korte animatie; geen eindeloze beweging. */
+          <p class="eyebrow">07 · CSS-animatie</p>
+          <h2 id="animatie">Een kleine beweging met CSS</h2>
+          <!-- Decoratieve SVG: vectorvormen blijven scherp; CSS animeert alleen de stip. -->
+          <svg
+            class="code-motion"
+            viewBox="0 0 160 48"
+            width="160"
+            height="48"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path
+              d="m28 12-12 12 12 12m104-24 12 12-12 12"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M48 24h64"
+              fill="none"
+              stroke="currentColor"
+              stroke-opacity=".25"
+              stroke-width="2"
+            />
+            <circle
+              class="code-motion-dot"
+              cx="56"
+              cy="24"
+              r="5"
+              fill="currentColor"
+            />
+          </svg>
+          <p>
+            Deze SVG tekent scherpe vectorvormen. De stip beweegt subtiel heen
+            en terug met CSS. De drie kaarten op de homepage bewegen kort zodra
+            ze in beeld komen. De animaties stoppen vanzelf en blijven uit bij
+            de systeeminstelling ‘minder beweging’.
+          </p>
+          <pre
+            class="code-sample"
+          ><code>/* Eén korte animatie; geen eindeloze beweging. */
 .code-motion-dot { animation: code-travel 2.4s ease-in-out 1; }
 @keyframes code-travel {
   0%, 100% { transform: translateX(0); }
@@ -619,7 +809,7 @@ align-content: start;   /* Hele raster verticaal aan het begin. */
 @media (prefers-reduced-motion: reduce) {
   .code-motion-dot { animation: none; }
 }</code></pre>
-</section>
+        </section>
         <section class="demo-panel" aria-labelledby="dynamisch">
           <p class="eyebrow">08 · JavaScript</p>
           <h2 id="dynamisch">JavaScript verandert de toestand</h2>
@@ -692,7 +882,7 @@ align-content: start;   /* Hele raster verticaal aan het begin. */
       <div class="container footer-inner">
         <p>Gemaakt door Marijn Kampers</p>
         <p>
-          <strong>HTML &amp; CSS demonstratie</strong><br>Leren door te bouwen
+          <strong>HTML &amp; CSS demonstratie</strong><br />Leren door te bouwen
         </p>
         <p>Lesmateriaal · <span data-current-year>2026</span></p>
         <p class="image-credit">
