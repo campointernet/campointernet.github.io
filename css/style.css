@@ -848,3 +848,15 @@ video:focus-visible { outline: 3px solid var(--coral); outline-offset: 4px; }
 @media (prefers-reduced-motion: reduce) {
   .motion-cards.is-in-view > .card, .code-motion.is-in-view .code-motion-dot { animation: none; }
 }
+
+/* Semantisch formulier: labels boven velden; border-box houdt padding binnen de breedte. */
+.lesson-form { max-width: 38rem; margin-block: 1.5rem; }
+.lesson-form fieldset { min-width: 0; margin: 0 0 1rem; padding: 1.25rem; border: 1px solid #8aa4aa; border-radius: .7rem; }
+.lesson-form legend { padding-inline: .35rem; font-weight: 800; }
+.form-field + .form-field { margin-top: 1rem; }
+.form-field label { display: block; margin-bottom: .35rem; font-weight: 750; }
+.form-field input, .form-field textarea { display: block; width: 100%; padding: .7rem; border: 1px solid var(--muted); border-radius: .35rem; font: inherit; color: var(--ink); background: var(--white); }
+.form-field textarea { resize: vertical; }
+.form-field input:focus-visible, .form-field textarea:focus-visible { outline: 3px solid var(--cyan-dark); outline-offset: 3px; }
+.field-help { margin: .35rem 0 0; color: var(--muted); font-size: .9rem; }
+.lesson-form button:disabled { opacity: .65; cursor: not-allowed; }

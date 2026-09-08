@@ -147,8 +147,62 @@
      playsinline: speel op mobiel binnen de pagina. --&gt;</code></pre>
   <p>Gebruik bij een video met spraak ook ondertiteling via <code>&lt;track kind="captions"&gt;</code>. Zet relevante visuele informatie daarnaast in een tekstbeschrijving.</p>
 </section>
+        <section class="demo-panel" aria-labelledby="formulier">
+  <p class="eyebrow">04 · Formulier</p>
+  <h2 id="formulier">Een formulier met duidelijke betekenis</h2>
+  <p><code>&lt;form&gt;</code> bundelt invoervelden. Elk veld heeft een zichtbaar <code>&lt;label&gt;</code>; <code>for</code> verwijst naar het <code>id</code> van het veld. <code>&lt;fieldset&gt;</code> groepeert velden en <code>&lt;legend&gt;</code> geeft die groep een naam.</p>
+  <p id="form-help">Alle velden zijn verplicht. Gebruik verzonnen gegevens: dit lesvoorbeeld controleert de invoer alleen in je browser en verstuurt of bewaart niets.</p>
+  <!-- Zonder JavaScript blijft de knop uitgeschakeld, zodat dit voorbeeld nooit gegevens verstuurt. -->
+  <form id="lesson-form" class="lesson-form" aria-describedby="form-help">
+    <fieldset>
+      <legend>Jouw oefenbericht</legend>
+      <div class="form-field">
+        <!-- for en id koppelen het label aan de invoer; required activeert browservalidatie. -->
+        <label for="lesson-name">Naam (verplicht)</label>
+        <input id="lesson-name" name="name" type="text" autocomplete="name" required>
+      </div>
+      <div class="form-field">
+        <label for="lesson-email">E-mailadres (verplicht)</label>
+        <!-- type=email controleert de vorm; het bewijst niet dat het adres bestaat. -->
+        <input id="lesson-email" name="email" type="email" autocomplete="email" aria-describedby="email-help" required>
+        <p id="email-help" class="field-help">Bijvoorbeeld student@example.com.</p>
+      </div>
+      <div class="form-field">
+        <label for="lesson-message">Bericht (verplicht)</label>
+        <textarea id="lesson-message" name="message" rows="3" required></textarea>
+      </div>
+    </fieldset>
+    <button class="control-button" type="submit" id="form-check" disabled>Controleer het formulier</button>
+    <!-- role=status laat de uitkomst voorlezen zonder de focus te verplaatsen. -->
+    <p id="form-status" class="status" role="status"></p>
+  </form>
+  <noscript><p>Zet JavaScript aan om de oefenknop te gebruiken. De velden en labels blijven zichtbaar.</p></noscript>
+  <pre class="code-sample"><code>&lt;!-- Vereenvoudigde structuur van het voorbeeld hierboven. --&gt;
+&lt;form&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Jouw oefenbericht&lt;/legend&gt;
+
+    &lt;!-- for verwijst naar id: label en invoer horen bij elkaar. --&gt;
+    &lt;label for="email"&gt;E-mailadres (verplicht)&lt;/label&gt;
+    &lt;input id="email" name="email" type="email"
+           autocomplete="email" required&gt;
+
+    &lt;!-- name is de veldnaam bij een echte verzending.
+         type="email" controleert de vorm van het adres.
+         autocomplete helpt bij automatisch invullen.
+         required maakt het veld verplicht. --&gt;
+  &lt;/fieldset&gt;
+  &lt;button type="submit"&gt;Controleer het formulier&lt;/button&gt;
+&lt;/form&gt;
+
+/* JavaScript houdt de verzending in deze demo tegen: */
+form.addEventListener("submit", (event) =&gt; {
+  event.preventDefault(); // Geen netwerkverzoek of paginawissel.
+});</code></pre>
+  <p>Probeer eerst lege velden of een ongeldig e-mailadres. De browser geeft feedback bij het veld. In een echte toepassing stel je ook de bestemming (<code>action</code>) en verzendmethode (<code>method</code>) in en controleert de server de invoer opnieuw.</p>
+</section>
         <section class="demo-panel" aria-labelledby="flexbox">
-          <p class="eyebrow">04 · Flexbox</p>
+          <p class="eyebrow">05 · Flexbox</p>
           <h2 id="flexbox">Eén richting, meerdere verdelingen</h2>
           <p>
             De container heeft <code>display: flex</code>. Kies hoe de vrije
@@ -342,7 +396,7 @@
           </section>
         </section>
         <section class="demo-panel" aria-labelledby="grid">
-          <p class="eyebrow">05 · CSS Grid</p>
+          <p class="eyebrow">06 · CSS Grid</p>
           <h2 id="grid">Vier blokken, twee richtingen</h2>
           <p>
             Deze container gebruikt <code>display: grid</code> met twee kolommen
@@ -547,7 +601,7 @@ align-content: start;   /* Hele raster verticaal aan het begin. */
           </section>
         </section>
         <section class="demo-panel" aria-labelledby="animatie">
-  <p class="eyebrow">06 · CSS-animatie</p><h2 id="animatie">Een kleine beweging met CSS</h2>
+  <p class="eyebrow">07 · CSS-animatie</p><h2 id="animatie">Een kleine beweging met CSS</h2>
   <!-- Decoratieve SVG: vectorvormen blijven scherp; CSS animeert alleen de stip. -->
 <svg class="code-motion" viewBox="0 0 160 48" width="160" height="48" aria-hidden="true" focusable="false">
   <path d="m28 12-12 12 12 12m104-24 12 12-12 12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -567,7 +621,7 @@ align-content: start;   /* Hele raster verticaal aan het begin. */
 }</code></pre>
 </section>
         <section class="demo-panel" aria-labelledby="dynamisch">
-          <p class="eyebrow">07 · JavaScript</p>
+          <p class="eyebrow">08 · JavaScript</p>
           <h2 id="dynamisch">JavaScript verandert de toestand</h2>
           <p>
             De knop past de waarde in de DOM aan. De oorspronkelijke HTML
@@ -588,7 +642,7 @@ align-content: start;   /* Hele raster verticaal aan het begin. */
 });</code></pre>
         </section>
         <section class="demo-panel" aria-labelledby="accessibility">
-          <p class="eyebrow">08 · Toegankelijkheid</p>
+          <p class="eyebrow">09 · Toegankelijkheid</p>
           <h2 id="accessibility">Bekijk, verklaar en verbeter</h2>
           <h3>WAVE: fouten visueel uitleggen</h3>
           <p>

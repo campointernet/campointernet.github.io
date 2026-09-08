@@ -293,3 +293,17 @@ if ('IntersectionObserver' in window) {
   }, { threshold: 0.15 });
   document.querySelectorAll('.motion-cards, .code-motion').forEach((item) => motionObserver.observe(item));
 }
+
+// Dit oefenformulier gebruikt browservalidatie, maar verstuurt of bewaart geen gegevens.
+const lessonForm = document.querySelector('#lesson-form');
+if (lessonForm) {
+  lessonForm.addEventListener('submit', (event) => {
+    event.preventDefault(); // Onderbreek de standaardverzending van het formulier.
+    document.querySelector('#form-status').textContent = 'De invoer voldoet aan de formulierregels. Er is niets verstuurd of opgeslagen.';
+  });
+  lessonForm.addEventListener('input', () => {
+    document.querySelector('#form-status').textContent = ''; // Oude bevestiging vervalt bij aanpassen.
+  });
+  // Activeer pas nadat de submit-handler klaarstaat: zonder JS is verzending geblokkeerd.
+  document.querySelector('#form-check').disabled = false;
+}
