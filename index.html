@@ -104,7 +104,8 @@
             en de taak van de gebruiker.
           </p>
         </div>
-        <div class="card-grid">
+        <!-- Een korte CSS-animatie start zodra deze kaarten in beeld komen. -->
+        <div class="card-grid motion-cards">
           <article class="card">
             <p class="card-number">01 · BEGRIJPEN</p>
             <h3>De echte vraag</h3>
@@ -133,6 +134,12 @@
       </section>
       <section class="section dark-section">
         <div class="container">
+          <!-- Decoratieve SVG: vectorvormen blijven scherp; CSS animeert alleen de stip. -->
+<svg class="code-motion" viewBox="0 0 160 48" width="160" height="48" aria-hidden="true" focusable="false">
+  <path d="m28 12-12 12 12 12m104-24 12 12-12 12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M48 24h64" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="2"/>
+  <circle class="code-motion-dot" cx="56" cy="24" r="5" fill="currentColor"/>
+</svg>
           <p class="eyebrow">Lesdemo</p>
           <h2>Statisch vormt de basis.<br>Dynamisch reageert.</h2>
           <p class="lead">
@@ -155,6 +162,7 @@
     </main>
     <footer class="site-footer">
       <div class="container footer-inner">
+        <p>Gemaakt door Marijn Kampers</p>
         <p>
           <strong>HTML &amp; CSS demonstratie</strong><br>Leren door te bouwen
         </p>

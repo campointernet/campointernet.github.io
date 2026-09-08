@@ -74,8 +74,100 @@
             class="code-sample"
           ><code>&lt;h2&gt;De inhoud staat al in de HTML&lt;/h2&gt;&lt;p&gt;Dit is statische inhoud.&lt;/p&gt;</code></pre>
         </section>
+        <section class="demo-panel" aria-labelledby="animatie">
+  <p class="eyebrow">02 · CSS-animatie</p><h2 id="animatie">Een kleine beweging met CSS</h2>
+  <!-- Decoratieve SVG: vectorvormen blijven scherp; CSS animeert alleen de stip. -->
+<svg class="code-motion" viewBox="0 0 160 48" width="160" height="48" aria-hidden="true" focusable="false">
+  <path d="m28 12-12 12 12 12m104-24 12 12-12 12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M48 24h64" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="2"/>
+  <circle class="code-motion-dot" cx="56" cy="24" r="5" fill="currentColor"/>
+</svg>
+  <p>Deze SVG tekent scherpe vectorvormen. De stip beweegt subtiel heen en terug met CSS. De drie kaarten op de homepage bewegen kort zodra ze in beeld komen. De animaties stoppen vanzelf en blijven uit bij de systeeminstelling ‘minder beweging’.</p>
+  <pre class="code-sample"><code>/* Eén korte animatie; geen eindeloze beweging. */
+.code-motion-dot { animation: code-travel 2.4s ease-in-out 1; }
+@keyframes code-travel {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(48px); }
+}
+/* Respecteer de voorkeur voor minder beweging. */
+@media (prefers-reduced-motion: reduce) {
+  .code-motion-dot { animation: none; }
+}</code></pre>
+</section>
+        <section class="demo-panel" aria-labelledby="boxmodel">
+          <p class="eyebrow">03 · Box-model</p>
+          <h2 id="boxmodel">Dezelfde CSS-breedte, een ander totaal</h2>
+          <p><strong>Waarom handig?</strong> Met <code>box-sizing: border-box</code> kun je een invoerveld <code>width: 100%</code> geven en padding toevoegen, zonder dat het daardoor breder wordt dan zijn container. Padding en border vallen binnen die 100%.</p>
+          <p>
+            Beide blokken hebben <code>width: 280px</code>,
+            <code>padding: 32px</code> en <code>border: 16px</code>. Bij
+            content-box komen padding en border erbij; border-box houdt het
+            totaal op 280 px.
+          </p>
+          <div class="box-row">
+            <div>
+              <div class="measure-box content-box-demo">
+                <strong>content-box</strong><br>breedte geldt alleen voor
+                content
+              </div>
+              <span class="measure-label" id="content-measure"
+                >totaal meten…</span
+              >
+            </div>
+            <div>
+              <div class="measure-box border-box-demo">
+                <strong>border-box</strong><br>padding en border tellen mee
+              </div>
+              <span class="measure-label" id="border-measure"
+                >totaal meten…</span
+              >
+            </div>
+          </div>
+          <!-- Dezelfde maten maken het verschil tussen beide box-modellen zichtbaar. -->
+          <pre class="code-sample"><code>.measure-box {
+  width: 280px;  /* De opgegeven CSS-breedte. */
+  padding: 32px; /* Binnenruimte aan elke kant. */
+  border: 16px solid coral; /* Rand aan elke kant. */
+}
+
+.content-box-demo {
+  box-sizing: content-box; /* 280px geldt alleen voor de inhoud. */
+}
+/* Totale breedte: 280 + 32 + 32 + 16 + 16 = 376px. */
+
+.border-box-demo {
+  box-sizing: border-box; /* Padding en border vallen binnen 280px. */
+}
+/* Totale breedte: 280px.
+   Voor de inhoud blijft 280 - 32 - 32 - 16 - 16 = 184px over. */</code></pre>
+        </section>
+        <section class="demo-panel" aria-labelledby="video">
+  <p class="eyebrow">04 · Video</p><h2 id="video">Een videospeler met semantische HTML</h2>
+  <p><code>&lt;video&gt;</code> beschrijft een videospeler; <code>&lt;source&gt;</code> geeft het mediabestand en bestandstype aan. De browser verzorgt de bediening, zonder eigen JavaScript.</p>
+  <figure class="video-example">
+    <!-- controls toont bediening; metadata beperkt vooraf laden; playsinline speelt binnen de pagina op mobiel. -->
+    <video controls preload="metadata" playsinline width="960" height="540" aria-label="Close-up van een bloemknop" aria-describedby="video-description">
+      <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+      Je browser ondersteunt deze videospeler niet. <a href="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4">Open de MP4-video</a>.
+    </video>
+    <figcaption id="video-description">Beeldbeschrijving: een close-up van een roze bloemknop tussen groene bladeren, tegen een onscherpe achtergrond. Dit is een kort voorbeeld zonder gesproken uitleg.</figcaption>
+  </figure>
+  <p>Bron: <a href="https://interactive-examples.mdn.mozilla.net/pages/tabbed/video.html">MDN-videovoorbeeld (CC0)</a>. <a href="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4">Open het externe MP4-bestand</a> als afspelen niet lukt. Internet is nodig.</p>
+  <pre class="code-sample"><code>&lt;!-- De bezoeker start de video zelf: geen autoplay. --&gt;
+&lt;video controls preload="metadata" playsinline width="960" height="540"&gt;
+  &lt;!-- source noemt de externe bron; type vertelt welk formaat dit is. --&gt;
+  &lt;source
+    src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+    type="video/mp4"&gt;
+  Je browser ondersteunt deze videospeler niet.
+&lt;/video&gt;
+&lt;!-- controls: afspelen, pauze en andere browserbediening.
+     preload="metadata": vraag vooraf alleen video-informatie op.
+     playsinline: speel op mobiel binnen de pagina. --&gt;</code></pre>
+  <p>Gebruik bij een video met spraak ook ondertiteling via <code>&lt;track kind="captions"&gt;</code>. Zet relevante visuele informatie daarnaast in een tekstbeschrijving.</p>
+</section>
         <section class="demo-panel" aria-labelledby="flexbox">
-          <p class="eyebrow">02 · Flexbox</p>
+          <p class="eyebrow">05 · Flexbox</p>
           <h2 id="flexbox">Eén richting, meerdere verdelingen</h2>
           <p>
             De container heeft <code>display: flex</code>. Kies hoe de vrije
@@ -268,55 +360,8 @@
             <p class="ratio-note"><code>flex: 1 1 0</code> betekent: groeien met factor 1, krimpen met factor 1 en beginnen bij breedte 0. De buitenste blokken hebben geen padding of border; de tekst krijgt ruimte via een binnenste span. Zo is C ook werkelijk twee keer zo breed als A.</p>
           </section>
         </section>
-        <section class="demo-panel" aria-labelledby="boxmodel">
-          <p class="eyebrow">03 · Box-model</p>
-          <h2 id="boxmodel">Dezelfde CSS-breedte, een ander totaal</h2>
-          <p>
-            Beide blokken hebben <code>width: 280px</code>,
-            <code>padding: 32px</code> en <code>border: 16px</code>. Bij
-            content-box komen padding en border erbij; border-box houdt het
-            totaal op 280 px.
-          </p>
-          <div class="box-row">
-            <div>
-              <div class="measure-box content-box-demo">
-                <strong>content-box</strong><br>breedte geldt alleen voor
-                content
-              </div>
-              <span class="measure-label" id="content-measure"
-                >totaal meten…</span
-              >
-            </div>
-            <div>
-              <div class="measure-box border-box-demo">
-                <strong>border-box</strong><br>padding en border tellen mee
-              </div>
-              <span class="measure-label" id="border-measure"
-                >totaal meten…</span
-              >
-            </div>
-          </div>
-          <!-- Dezelfde maten maken het verschil tussen beide box-modellen zichtbaar. -->
-          <pre class="code-sample"><code>.measure-box {
-  width: 280px;  /* De opgegeven CSS-breedte. */
-  padding: 32px; /* Binnenruimte aan elke kant. */
-  border: 16px solid coral; /* Rand aan elke kant. */
-}
-
-.content-box-demo {
-  box-sizing: content-box; /* 280px geldt alleen voor de inhoud. */
-}
-/* Totale breedte: 280 + 32 + 32 + 16 + 16 = 376px. */
-
-.border-box-demo {
-  box-sizing: border-box; /* Padding en border vallen binnen 280px. */
-}
-/* Totale breedte: 280px.
-   Voor de inhoud blijft 280 - 32 - 32 - 16 - 16 = 184px over. */</code></pre>
-        </section>
-        <!-- Grid verdeelt vier items over twee kolommen en twee rijen. content lijnt het hele raster uit. -->
         <section class="demo-panel" aria-labelledby="grid">
-          <p class="eyebrow">04 · CSS Grid</p>
+          <p class="eyebrow">06 · CSS Grid</p>
           <h2 id="grid">Vier blokken, twee richtingen</h2>
           <p>
             Deze container gebruikt <code>display: grid</code> met twee kolommen
@@ -521,7 +566,7 @@ align-content: start;   /* Hele raster verticaal aan het begin. */
           </section>
         </section>
         <section class="demo-panel" aria-labelledby="dynamisch">
-          <p class="eyebrow">05 · Dynamisch</p>
+          <p class="eyebrow">07 · JavaScript</p>
           <h2 id="dynamisch">JavaScript verandert de toestand</h2>
           <p>
             De knop past de waarde in de DOM aan. De oorspronkelijke HTML
@@ -541,9 +586,8 @@ align-content: start;   /* Hele raster verticaal aan het begin. */
   output.textContent = count;
 });</code></pre>
         </section>
-        <!-- Automatische tools ondersteunen de controle; handmatig toetsenbordtesten blijft nodig. -->
         <section class="demo-panel" aria-labelledby="accessibility">
-          <p class="eyebrow">06 · Toegankelijkheid</p>
+          <p class="eyebrow">08 · Toegankelijkheid</p>
           <h2 id="accessibility">Bekijk, verklaar en verbeter</h2>
           <h3>WAVE: fouten visueel uitleggen</h3>
           <p>
@@ -591,6 +635,7 @@ align-content: start;   /* Hele raster verticaal aan het begin. */
     </main>
     <footer class="site-footer">
       <div class="container footer-inner">
+        <p>Gemaakt door Marijn Kampers</p>
         <p>
           <strong>HTML &amp; CSS demonstratie</strong><br>Leren door te bouwen
         </p>

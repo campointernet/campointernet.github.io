@@ -279,3 +279,17 @@ document.querySelector("#reset-button")?.addEventListener("click", () => {
   // Toon opnieuw 0 op de pagina.
   counter.textContent = count;
 });
+
+// IntersectionObserver start de korte animatie pas als het voorbeeld in beeld is.
+// Zonder ondersteuning blijven kaarten en SVG gewoon zichtbaar en stil staan.
+if ('IntersectionObserver' in window) {
+  const motionObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-in-view');
+        observer.unobserve(entry.target); // Eenmalig afspelen, niet bij elke scroll.
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.motion-cards, .code-motion').forEach((item) => motionObserver.observe(item));
+}
