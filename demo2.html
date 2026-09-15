@@ -11,14 +11,13 @@ title.textContent = "Hello World!";
 description.innerHTML = "De DOM is &lt;strong&gt;dynamisch&lt;/strong&gt;.";
 title.style.color = "#076d69";
 
-// Maak een nieuw DOM-element en voeg het toe.
 const p = document.createElement("p");
 p.textContent = "Dit element is met JavaScript gemaakt.";
 output.appendChild(p);
 p.remove();</code></pre><p class="eyebrow" style="margin-top:1.5rem">Bijbehorende HTML</p><pre class="code-sample"><code>&lt;h3 id="demo-title"&gt;Original heading&lt;/h3&gt;
 &lt;p id="demo-description"&gt;Some text.&lt;/p&gt;
 &lt;div id="output"&gt;&lt;/div&gt;
-&lt;button id="run-dom" type="button"&gt;Voer opdracht uit&lt;/button&gt;</code></pre><p><code>id="demo-title"</code> wordt bijvoorbeeld geselecteerd met <code>querySelector("#demo-title")</code>.</p></article></div></section>
+&lt;button id="run-dom" type="button"&gt;Voer opdracht uit&lt;/button&gt;</code></pre><p><code>id="demo-title"</code> wordt geselecteerd met <code>querySelector("#demo-title")</code>.</p></article></div></section>
 <section class="lesson-block"><div class="lesson-heading"><div><p class="eyebrow">02 · Productenpagina</p><h2>Data renderen en sorteren</h2></div><p>HTML levert de knoppen en een lege container. JavaScript bevat de data, maakt elementen en reageert op events.</p></div><div class="exercise-grid"><article class="demo-panel exercise-demo"><div class="button-row compact top-row"><button class="control-button" id="sort-price" type="button">Sorteer op prijs</button><button class="control-button secondary-control" id="sort-popularity" type="button">Sorteer op populariteit</button></div><div id="product-list" class="product-grid" aria-live="polite"></div></article><article class="code-card"><p class="eyebrow">JavaScript</p><pre class="code-sample"><code>const products = [
   { naam: "Koffie", prijs: 3.20, populariteit: 92 },
   { naam: "Thee", prijs: 2.80, populariteit: 71 }
@@ -41,24 +40,19 @@ sortPrice.addEventListener("click", () =&gt; {
 &lt;div id="product-list"&gt;&lt;/div&gt;
 &lt;script src="js/demo2.js" defer&gt;&lt;/script&gt;</code></pre><p><strong>Route:</strong> HTML → selector → event → functie → DOM aanpassen.</p></article></div></section>
 <section class="lesson-block" aria-labelledby="concepten"><div class="lesson-heading"><div><p class="eyebrow">Extra · Begrippen uit de code</p><h2 id="concepten">Wat betekenen de lastigere stukken?</h2></div><p>Je hoeft de syntax niet allemaal uit je hoofd te kennen; begrijp vooral wat er gebeurt.</p></div><div class="card-grid">
-<article class="card"><p class="card-number">01 · ARROW / LAMBDA</p><h3>Dezelfde functie, korter geschreven</h3><pre class="code-sample"><code>// Klassieke manier: functie maken en daarna aanroepen.
-function add(a, b) {
+<article class="card"><p class="card-number">01 · ARROW / LAMBDA</p><h3>Dezelfde functie, korter geschreven</h3><pre class="code-sample"><code>function add(a, b) {
   return a + b;
 }
+add(10, 5); // 15
 
-add(10, 5); // resultaat: 15
-
-// Arrow function (ES6+): dezelfde functie korter geschreven.
 const addArrow = (a, b) =&gt; a + b;
+addArrow(10, 5); // 15
 
-addArrow(10, 5); // resultaat: 15
-
-// Alleen de anonieme arrow function zelf:
-(a, b) =&gt; a + b;</code></pre><p>De arrow function zelf is <code>(a, b) =&gt; a + b</code>. In <code>const addArrow = ...</code> bewaren we die functie in een variabele, zodat we haar later met <code>addArrow(10, 5)</code> kunnen aanroepen.</p></article>
+// Alleen de anonieme arrow function:
+(a, b) =&gt; a + b;</code></pre><p>De arrow function zelf is <code>(a, b) =&gt; a + b</code>. Door hem in <code>addArrow</code> te bewaren kun je hem later aanroepen.</p></article>
 <article class="card"><p class="card-number">02 · ANONIEME FUNCTIE</p><h3>Een functie zonder naam</h3><pre class="code-sample"><code>button.addEventListener("click", () =&gt; {
-  // Deze functie heeft geen eigen naam.
   title.textContent = "Hallo!";
-});</code></pre><p>Handig wanneer de functie alleen op deze plek nodig is. De functie wordt direct meegegeven aan <code>addEventListener</code>.</p></article>
+});</code></pre><p>De functie wordt direct meegegeven aan <code>addEventListener</code> en hoeft daarom niet eerst een eigen naam te krijgen.</p></article>
 <article class="card"><p class="card-number">03 · EVENT OBJECT</p><h3>Informatie over wat gebeurde</h3><pre class="code-sample"><code>document.addEventListener("keydown", (event) =&gt; {
   console.log(event.key);
   console.log(event.target);
@@ -69,21 +63,28 @@ addArrow(10, 5); // resultaat: 15
 <article class="card"><p class="card-number">05 · SORT CALLBACK</p><h3>Hoe moet de array sorteren?</h3><pre class="code-sample"><code>products.sort((a, b) =&gt; a.prijs - b.prijs);
 // negatief: a vóór b
 // positief: b vóór a</code></pre><p>De functie die je aan <code>sort</code> meegeeft bepaalt de volgorde.</p></article>
-<article class="card"><p class="card-number">06 · JSON VS OBJECT</p><h3>Niet precies hetzelfde</h3><pre class="code-sample"><code>const fruit = { naam: "Appel", prijs: 3 };
-const data = JSON.parse('{"naam":"Appel","prijs":3}');</code></pre><p>Een object leeft direct in JavaScript. JSON is een tekstformaat voor data-uitwisseling.</p></article>
+<article class="card"><p class="card-number">06 · JSON, OBJECT & COMMUNICATIE</p><h3>JSON is tekst; eerst omzetten om properties te gebruiken</h3><pre class="code-sample"><code>// JSON zoals je die bijvoorbeeld van een API ontvangt:
+const json = '{"naam":"Marijn","leeftijd":44}';
+
+json.naam; // ❌ werkt niet: json is hier gewoon tekst (string)
+
+// JSON-tekst omzetten naar een JavaScript-object:
+const persoon = JSON.parse(json);
+
+persoon.naam;     // ✅ "Marijn"
+persoon.leeftijd; // ✅ 44
+
+// Andersom: JavaScript-object omzetten naar JSON-tekst:
+const terugNaarJson = JSON.stringify(persoon);</code></pre><p><strong>Communicatie:</strong> een server/API kan JSON-data versturen. In JavaScript zet je die om naar een object voordat je bijvoorbeeld <code>persoon.naam</code> gebruikt. Andersom kan <code>JSON.stringify()</code> een JavaScript-object omzetten naar JSON-tekst voor opslag of verzending.</p></article>
 <article class="card"><p class="card-number">07 · CONST VS LET</p><h3>Een const mag je niet opnieuw toewijzen</h3><pre class="code-sample"><code>const x = 10;
-x = 20; // ❌ je probeert x opnieuw een waarde te geven
+x = 20; // ❌ opnieuw toewijzen
 
 let score = 10;
-score = 20; // ✅ bij let mag opnieuw toewijzen wel
+score = 20; // ✅ mag
 
 const numbers = [3, 4];
-
-// Dezelfde array aanpassen mag:
-numbers.push(5); // ✅ [3, 4, 5]
-numbers[0] = 10; // ✅ [10, 4, 5]
-
-// numbers opnieuw naar een andere array laten verwijzen mag niet:
-numbers = [4, 5]; // ❌ opnieuw toewijzen</code></pre><p>Dus: bij <code>const</code> mag je de <strong>variabele niet opnieuw toewijzen</strong>. Bij een array of object mag de inhoud van hetzelfde object wél veranderen. Het gaat dus niet om het bewaren van de oude waarden, maar om het feit dat <code>numbers</code> naar dezelfde array blijft verwijzen.</p></article>
+numbers.push(5); // ✅ dezelfde array aanpassen
+numbers[0] = 10; // ✅ dezelfde array aanpassen
+numbers = [4, 5]; // ❌ andere array toewijzen</code></pre><p>Bij <code>const</code> mag je de variabele niet opnieuw toewijzen. Bij een array of object mag de inhoud van hetzelfde object wél veranderen.</p></article>
 </div></section>
 <section class="dark-callout"><p class="eyebrow">Kern van de les</p><h2>HTML geeft structuur. JavaScript maakt die structuur interactief.</h2><p>De DOM is de verbinding. JavaScript selecteert HTML-elementen, luistert naar events en verandert daarna inhoud of structuur.</p></section></main><footer class="site-footer"><div class="container footer-inner"><p>Gemaakt door Marijn Kampers</p><p><strong>JavaScript & DOM demonstratie</strong><br>Leren door te bouwen</p><p>Lesmateriaal · <span data-current-year>2026</span></p></div></footer><script src="js/site.js" defer></script><script src="js/demo2.js" defer></script></body></html>
