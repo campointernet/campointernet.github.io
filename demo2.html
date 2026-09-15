@@ -49,32 +49,37 @@ sortPrice.addEventListener("click", () =&gt; {
 function add(a, b) {
   return a + b;
 }
-
 // Arrow function (ES6+)
-const add = (a, b) =&gt; a + b;</code></pre><p>In deze les kun je een arrow function zien als een compacte manier om een functie te schrijven. Lambda is het algemene concept; in JavaScript heet deze syntax meestal een <strong>arrow function</strong>.</p></article>
+const add = (a, b) =&gt; a + b;</code></pre><p>In deze les kun je een arrow function zien als een compacte manier om een functie te schrijven. Lambda is het algemene concept.</p></article>
 <article class="card"><p class="card-number">02 · ANONIEME FUNCTIE</p><h3>Een functie zonder naam</h3><pre class="code-sample"><code>button.addEventListener("click", () =&gt; {
-  // Deze functie heeft geen eigen naam.
-  // Hij wordt uitgevoerd wanneer er wordt geklikt.
+  // Geen functienaam nodig: deze functie
+  // wordt uitgevoerd wanneer er wordt geklikt.
   title.textContent = "Hallo!";
 });</code></pre><p>Handig wanneer de functie alleen op deze plek nodig is. De functie wordt als argument meegegeven aan <code>addEventListener</code>.</p></article>
 <article class="card"><p class="card-number">03 · EVENT OBJECT</p><h3>Informatie over wat gebeurde</h3><pre class="code-sample"><code>document.addEventListener("keydown", (event) =&gt; {
-  // event bevat informatie over de gebeurtenis.
-  console.log(event.key);
-  console.log(event.target);
-});</code></pre><p>De browser geeft het <code>event</code>-object aan de handler. Daarmee kun je bijvoorbeeld zien welke toets is ingedrukt of welk element het event veroorzaakte.</p></article>
+  console.log(event.key);    // Welke toets?
+  console.log(event.target); // Welk element?
+});</code></pre><p>De browser geeft het <code>event</code>-object aan de handler met informatie over de gebeurtenis.</p></article>
 <article class="card"><p class="card-number">04 · FOREACH</p><h3>Doe iets voor elk item</h3><pre class="code-sample"><code>products.forEach((product) =&gt; {
-  // Wordt één keer uitgevoerd voor elk product.
+  // Eén keer voor elk product.
   console.log(product.naam);
-});</code></pre><p><code>forEach</code> loopt door een array. De arrow function bepaalt wat er met ieder item gebeurt.</p></article>
-<article class="card"><p class="card-number">05 · SORT CALLBACK</p><h3>Hoe moet de array sorteren?</h3><pre class="code-sample"><code>// Oplopend op prijs
-products.sort((a, b) =&gt; a.prijs - b.prijs);
-
-// a vóór b: negatieve uitkomst
-// b vóór a: positieve uitkomst</code></pre><p>De functie die je aan <code>sort</code> meegeeft bepaalt de volgorde. Dit is opnieuw een anonieme arrow function.</p></article>
+});</code></pre><p><code>forEach</code> loopt door een array. De functie bepaalt wat er met ieder item gebeurt.</p></article>
+<article class="card"><p class="card-number">05 · SORT CALLBACK</p><h3>Hoe moet de array sorteren?</h3><pre class="code-sample"><code>products.sort((a, b) =&gt; a.prijs - b.prijs);
+// negatief: a vóór b
+// positief: b vóór a</code></pre><p>De functie die je aan <code>sort</code> meegeeft bepaalt de volgorde.</p></article>
 <article class="card"><p class="card-number">06 · JSON VS OBJECT</p><h3>Niet precies hetzelfde</h3><pre class="code-sample"><code>// JavaScript-object
 const fruit = { naam: "Appel", prijs: 3 };
-
 // JSON-tekst → JavaScript-object
-const data = JSON.parse('{"naam":"Appel","prijs":3}');</code></pre><p>Een object/array leeft direct in JavaScript. JSON is een tekstformaat voor data-uitwisseling. <code>JSON.parse()</code> zet JSON-tekst om naar JavaScript-data.</p></article>
+const data = JSON.parse('{"naam":"Appel","prijs":3}');</code></pre><p>Een object leeft direct in JavaScript. JSON is een tekstformaat voor data-uitwisseling.</p></article>
+<article class="card"><p class="card-number">07 · CONST VS LET</p><h3>Opnieuw toewijzen of niet?</h3><pre class="code-sample"><code>const x = 10;
+x = 20; // ❌ fout: const mag niet opnieuw worden toegewezen
+
+let score = 10;
+score = 20; // ✅ let mag wel een nieuwe waarde krijgen
+
+const numbers = [1, 2];
+numbers.push(3); // ✅ inhoud van dezelfde array wijzigen mag
+
+numbers = [4, 5]; // ❌ nieuwe array toewijzen mag niet</code></pre><p><code>const</code> betekent dus niet dat een object of array volledig onveranderlijk is. De variabele mag alleen niet opnieuw naar een andere waarde of referentie wijzen. <code>let</code> gebruik je wanneer je later wél opnieuw wilt toewijzen. Beide hebben <strong>block scope</strong>.</p></article>
 </div></section>
 <section class="dark-callout"><p class="eyebrow">Kern van de les</p><h2>HTML geeft structuur. JavaScript maakt die structuur interactief.</h2><p>De DOM is de verbinding. JavaScript selecteert HTML-elementen, luistert naar events en verandert daarna inhoud of structuur.</p></section></main><footer class="site-footer"><div class="container footer-inner"><p>Gemaakt door Marijn Kampers</p><p><strong>JavaScript & DOM demonstratie</strong><br>Leren door te bouwen</p><p>Lesmateriaal · <span data-current-year>2026</span></p></div></footer><script src="js/site.js" defer></script><script src="js/demo2.js" defer></script></body></html>
