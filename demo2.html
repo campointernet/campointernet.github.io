@@ -51,10 +51,20 @@ addArrow(10, 5); // 15
 <article class="card"><p class="card-number">02 · ANONIEME FUNCTIE</p><h3>Een functie zonder naam</h3><pre class="code-sample"><code>button.addEventListener("click", () =&gt; {
   title.textContent = "Hallo!";
 });</code></pre><p>De functie wordt direct meegegeven aan <code>addEventListener</code> en hoeft daarom niet eerst een eigen naam te krijgen.</p></article>
-<article class="card"><p class="card-number">03 · EVENT OBJECT</p><h3>Informatie over wat gebeurde</h3><pre class="code-sample"><code>document.addEventListener("keydown", (event) =&gt; {
-  console.log(event.key);
+<article class="card"><p class="card-number">03 · EVENTS, LISTENER & HANDLER</p><h3>De browser merkt gebeurtenissen op</h3><pre class="code-sample"><code>// Voorbeelden van events:
+// gebruiker klikt       → click
+// muis gaat ergens over → mouseover
+// toets wordt ingedrukt → keydown
+// tekst wordt ingevoerd → input
+
+function handleClick(event) {
+  // De browser geeft het event-object mee.
   console.log(event.target);
-});</code></pre><p>De browser geeft het <code>event</code>-object aan de handler met informatie over de gebeurtenis.</p></article>
+}
+
+// Registreer: bij een click op deze button,
+// voer de handler handleClick uit.
+button.addEventListener("click", handleClick);</code></pre><p><strong>Event</strong> = de gebeurtenis, bijvoorbeeld <code>click</code>. <strong>Listener</strong> = de registratie waarmee je zegt waarop je wilt reageren. <strong>Handler</strong> = de functie die wordt uitgevoerd als het event plaatsvindt.</p><p>Je kunt dit lezen als: <em>“Browser, als er op deze button een click plaatsvindt, voer dan handleClick uit.”</em></p><p><strong>De keten:</strong> gebeurtenis → browser maakt een event-object → geregistreerde listener reageert → handler wordt aangeroepen → handler krijgt het event-object. <code>event.target</code> is het specifieke DOM-element waarop het event is ontstaan.</p></article>
 <article class="card"><p class="card-number">04 · FOREACH</p><h3>Doe iets voor elk item</h3><pre class="code-sample"><code>products.forEach((product) =&gt; {
   console.log(product.naam);
 });</code></pre><p><code>forEach</code> loopt door een array.</p></article>
@@ -72,7 +82,6 @@ const terugNaarJson = JSON.stringify(persoon);</code></pre><p>JSON wordt vaak ge
   let score = 10;
   const maximum = 100;
 }
-
 console.log(score);   // ❌ buiten het blok niet beschikbaar
 console.log(maximum); // ❌ buiten het blok niet beschikbaar
 
@@ -82,7 +91,7 @@ x = 20; // ✅ opnieuw toewijzen
 const numbers = [3, 4];
 numbers.push(5); // ✅ dezelfde array aanpassen
 numbers[0] = 10; // ✅ dezelfde array aanpassen
-numbers = [4, 5]; // ❌ const opnieuw toewijzen</code></pre><p><code>let</code> en <code>const</code> hebben allebei <strong>block scope</strong>. Het verschil tussen beide is vooral opnieuw toewijzen: bij <code>let</code> mag dat wel, bij <code>const</code> niet. Dit verschilt ook van het oudere <code>var</code>, dat geen block scope maar function scope heeft.</p></article>
+numbers = [4, 5]; // ❌ const opnieuw toewijzen</code></pre><p><code>let</code> en <code>const</code> hebben allebei <strong>block scope</strong>. Bij <code>let</code> mag je opnieuw toewijzen; bij <code>const</code> niet.</p></article>
 <article class="card"><p class="card-number">08 · JAVA VS JAVASCRIPT</p><h3>Statisch versus dynamisch getypeerd</h3><pre class="code-sample"><code>// Java: type staat bij de variabele
 int age = 25;
 String name = "Marijn";
@@ -90,6 +99,6 @@ String name = "Marijn";
 // JavaScript: type volgt uit de waarde
 let value = 25;      // number
 value = "Hallo";    // string
-value = true;        // boolean</code></pre><p><strong>Java is statically typed</strong>: het type van een variabele ligt vast. <strong>JavaScript is dynamically typed</strong>: een variabele kan tijdens het programma waarden van verschillende typen krijgen. <code>let</code> en <code>const</code> zijn dus geen datatypes, maar manieren om variabelen te declareren.</p></article>
+value = true;        // boolean</code></pre><p><strong>Java is statically typed</strong>. <strong>JavaScript is dynamically typed</strong>. <code>let</code> en <code>const</code> zijn geen datatypes, maar manieren om variabelen te declareren.</p></article>
 </div></section>
 <section class="dark-callout"><p class="eyebrow">Kern van de les</p><h2>HTML geeft structuur. JavaScript maakt die structuur interactief.</h2><p>De DOM is de verbinding. JavaScript selecteert HTML-elementen, luistert naar events en verandert daarna inhoud of structuur.</p></section></main><footer class="site-footer"><div class="container footer-inner"><p>Gemaakt door Marijn Kampers</p><p><strong>JavaScript & DOM demonstratie</strong><br>Leren door te bouwen</p><p>Lesmateriaal · <span data-current-year>2026</span></p></div></footer><script src="js/site.js" defer></script><script src="js/demo2.js" defer></script></body></html>
