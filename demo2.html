@@ -15,8 +15,7 @@ title.style.color = "#076d69";
 const p = document.createElement("p");
 p.textContent = "Dit element is met JavaScript gemaakt.";
 output.appendChild(p);
-
-p.remove(); // Verwijder hetzelfde element weer.</code></pre><p class="eyebrow" style="margin-top:1.5rem">Bijbehorende HTML</p><pre class="code-sample"><code>&lt;h3 id="demo-title"&gt;Original heading&lt;/h3&gt;
+p.remove();</code></pre><p class="eyebrow" style="margin-top:1.5rem">Bijbehorende HTML</p><pre class="code-sample"><code>&lt;h3 id="demo-title"&gt;Original heading&lt;/h3&gt;
 &lt;p id="demo-description"&gt;Some text.&lt;/p&gt;
 &lt;div id="output"&gt;&lt;/div&gt;
 &lt;button id="run-dom" type="button"&gt;Voer opdracht uit&lt;/button&gt;</code></pre><p><code>id="demo-title"</code> wordt bijvoorbeeld geselecteerd met <code>querySelector("#demo-title")</code>.</p></article></div></section>
@@ -24,10 +23,8 @@ p.remove(); // Verwijder hetzelfde element weer.</code></pre><p class="eyebrow" 
   { naam: "Koffie", prijs: 3.20, populariteit: 92 },
   { naam: "Thee", prijs: 2.80, populariteit: 71 }
 ];
-
 const productList = document.querySelector("#product-list");
 const sortPrice = document.querySelector("#sort-price");
-
 function renderProducts(items) {
   productList.innerHTML = "";
   items.forEach((product) =&gt; {
@@ -36,7 +33,6 @@ function renderProducts(items) {
     productList.appendChild(card);
   });
 }
-
 sortPrice.addEventListener("click", () =&gt; {
   products.sort((a, b) =&gt; a.prijs - b.prijs);
   renderProducts(products);
@@ -44,42 +40,50 @@ sortPrice.addEventListener("click", () =&gt; {
 &lt;button id="sort-popularity" type="button"&gt;Sorteer op populariteit&lt;/button&gt;
 &lt;div id="product-list"&gt;&lt;/div&gt;
 &lt;script src="js/demo2.js" defer&gt;&lt;/script&gt;</code></pre><p><strong>Route:</strong> HTML → selector → event → functie → DOM aanpassen.</p></article></div></section>
-<section class="lesson-block" aria-labelledby="concepten"><div class="lesson-heading"><div><p class="eyebrow">Extra · Begrippen uit de code</p><h2 id="concepten">Wat betekenen de lastigere stukken?</h2></div><p>Deze begrippen komen terug in de presentatie en de opdrachten. Je hoeft de syntax niet allemaal uit je hoofd te kennen; begrijp vooral wat er gebeurt.</p></div><div class="card-grid">
-<article class="card"><p class="card-number">01 · ARROW / LAMBDA</p><h3>Een compacte functie</h3><pre class="code-sample"><code>// Gewone functie
+<section class="lesson-block" aria-labelledby="concepten"><div class="lesson-heading"><div><p class="eyebrow">Extra · Begrippen uit de code</p><h2 id="concepten">Wat betekenen de lastigere stukken?</h2></div><p>Je hoeft de syntax niet allemaal uit je hoofd te kennen; begrijp vooral wat er gebeurt.</p></div><div class="card-grid">
+<article class="card"><p class="card-number">01 · ARROW / LAMBDA</p><h3>Dezelfde functie, korter geschreven</h3><pre class="code-sample"><code>// Klassieke manier: functie maken en daarna aanroepen.
 function add(a, b) {
   return a + b;
 }
-// Arrow function (ES6+)
-const add = (a, b) =&gt; a + b;</code></pre><p>In deze les kun je een arrow function zien als een compacte manier om een functie te schrijven. Lambda is het algemene concept.</p></article>
+
+add(10, 5); // resultaat: 15
+
+// Arrow function (ES6+): dezelfde functie korter geschreven.
+const addArrow = (a, b) =&gt; a + b;
+
+addArrow(10, 5); // resultaat: 15
+
+// Alleen de anonieme arrow function zelf:
+(a, b) =&gt; a + b;</code></pre><p>De arrow function zelf is <code>(a, b) =&gt; a + b</code>. In <code>const addArrow = ...</code> bewaren we die functie in een variabele, zodat we haar later met <code>addArrow(10, 5)</code> kunnen aanroepen.</p></article>
 <article class="card"><p class="card-number">02 · ANONIEME FUNCTIE</p><h3>Een functie zonder naam</h3><pre class="code-sample"><code>button.addEventListener("click", () =&gt; {
-  // Geen functienaam nodig: deze functie
-  // wordt uitgevoerd wanneer er wordt geklikt.
+  // Deze functie heeft geen eigen naam.
   title.textContent = "Hallo!";
-});</code></pre><p>Handig wanneer de functie alleen op deze plek nodig is. De functie wordt als argument meegegeven aan <code>addEventListener</code>.</p></article>
+});</code></pre><p>Handig wanneer de functie alleen op deze plek nodig is. De functie wordt direct meegegeven aan <code>addEventListener</code>.</p></article>
 <article class="card"><p class="card-number">03 · EVENT OBJECT</p><h3>Informatie over wat gebeurde</h3><pre class="code-sample"><code>document.addEventListener("keydown", (event) =&gt; {
-  console.log(event.key);    // Welke toets?
-  console.log(event.target); // Welk element?
+  console.log(event.key);
+  console.log(event.target);
 });</code></pre><p>De browser geeft het <code>event</code>-object aan de handler met informatie over de gebeurtenis.</p></article>
 <article class="card"><p class="card-number">04 · FOREACH</p><h3>Doe iets voor elk item</h3><pre class="code-sample"><code>products.forEach((product) =&gt; {
-  // Eén keer voor elk product.
   console.log(product.naam);
 });</code></pre><p><code>forEach</code> loopt door een array. De functie bepaalt wat er met ieder item gebeurt.</p></article>
 <article class="card"><p class="card-number">05 · SORT CALLBACK</p><h3>Hoe moet de array sorteren?</h3><pre class="code-sample"><code>products.sort((a, b) =&gt; a.prijs - b.prijs);
 // negatief: a vóór b
 // positief: b vóór a</code></pre><p>De functie die je aan <code>sort</code> meegeeft bepaalt de volgorde.</p></article>
-<article class="card"><p class="card-number">06 · JSON VS OBJECT</p><h3>Niet precies hetzelfde</h3><pre class="code-sample"><code>// JavaScript-object
-const fruit = { naam: "Appel", prijs: 3 };
-// JSON-tekst → JavaScript-object
+<article class="card"><p class="card-number">06 · JSON VS OBJECT</p><h3>Niet precies hetzelfde</h3><pre class="code-sample"><code>const fruit = { naam: "Appel", prijs: 3 };
 const data = JSON.parse('{"naam":"Appel","prijs":3}');</code></pre><p>Een object leeft direct in JavaScript. JSON is een tekstformaat voor data-uitwisseling.</p></article>
-<article class="card"><p class="card-number">07 · CONST VS LET</p><h3>Opnieuw toewijzen of niet?</h3><pre class="code-sample"><code>const x = 10;
-x = 20; // ❌ fout: const mag niet opnieuw worden toegewezen
+<article class="card"><p class="card-number">07 · CONST VS LET</p><h3>Een const mag je niet opnieuw toewijzen</h3><pre class="code-sample"><code>const x = 10;
+x = 20; // ❌ je probeert x opnieuw een waarde te geven
 
 let score = 10;
-score = 20; // ✅ let mag wel een nieuwe waarde krijgen
+score = 20; // ✅ bij let mag opnieuw toewijzen wel
 
-const numbers = [1, 2];
-numbers.push(3); // ✅ inhoud van dezelfde array wijzigen mag
+const numbers = [3, 4];
 
-numbers = [4, 5]; // ❌ nieuwe array toewijzen mag niet</code></pre><p><code>const</code> betekent dus niet dat een object of array volledig onveranderlijk is. De variabele mag alleen niet opnieuw naar een andere waarde of referentie wijzen. <code>let</code> gebruik je wanneer je later wél opnieuw wilt toewijzen. Beide hebben <strong>block scope</strong>.</p></article>
+// Dezelfde array aanpassen mag:
+numbers.push(5); // ✅ [3, 4, 5]
+numbers[0] = 10; // ✅ [10, 4, 5]
+
+// numbers opnieuw naar een andere array laten verwijzen mag niet:
+numbers = [4, 5]; // ❌ opnieuw toewijzen</code></pre><p>Dus: bij <code>const</code> mag je de <strong>variabele niet opnieuw toewijzen</strong>. Bij een array of object mag de inhoud van hetzelfde object wél veranderen. Het gaat dus niet om het bewaren van de oude waarden, maar om het feit dat <code>numbers</code> naar dezelfde array blijft verwijzen.</p></article>
 </div></section>
 <section class="dark-callout"><p class="eyebrow">Kern van de les</p><h2>HTML geeft structuur. JavaScript maakt die structuur interactief.</h2><p>De DOM is de verbinding. JavaScript selecteert HTML-elementen, luistert naar events en verandert daarna inhoud of structuur.</p></section></main><footer class="site-footer"><div class="container footer-inner"><p>Gemaakt door Marijn Kampers</p><p><strong>JavaScript & DOM demonstratie</strong><br>Leren door te bouwen</p><p>Lesmateriaal · <span data-current-year>2026</span></p></div></footer><script src="js/site.js" defer></script><script src="js/demo2.js" defer></script></body></html>
