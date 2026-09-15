@@ -1,100 +1,57 @@
 <!doctype html>
-<html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="JavaScript en DOM lesopdrachten: DOM-manipulatie, events, arrays en sorteren."><meta name="theme-color" content="#071521"><title>JavaScript & DOM demo | HTML & CSS demonstratie</title><link rel="icon" href="images/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/demo2.css"></head><body>
-<a class="skip-link" href="#hoofdinhoud">Ga naar de inhoud</a><header class="site-header"><div class="container header-inner"><a class="brand" href="index.html"><img src="https://www.w3.org/html/logo/downloads/HTML5_Badge_64.png" alt="" width="40" height="40"><span>HTML & CSS demonstratie</span></a><nav aria-label="Hoofdnavigatie"><ul class="nav-list"><li><a href="index.html">Home</a></li><li><a href="whoami.html">Who am I</a></li><li><a href="projects.html">Projects</a></li><li><a href="journal.html">Journal</a></li><li><a href="demo.html">Live demo</a></li></ul></nav></div></header>
-<main id="hoofdinhoud" class="container page-main"><header class="page-intro"><p class="eyebrow">Les 3 · JavaScript (ES6+) en de DOM</p><h1>Van HTML naar <span class="accent">interactie.</span></h1><p class="lead">Eerst lopen we de belangrijkste begrippen uit de presentatie langs. Daarna staan de twee opdrachten waarmee je de concepten in de praktijk gebruikt.</p></header>
-<section class="lesson-block" aria-labelledby="concepten"><div class="lesson-heading"><div><p class="eyebrow">Eerst · Begrippen uit de presentatie</p><h2 id="concepten">Wat betekenen de lastigere stukken?</h2></div><p>Loop deze begrippen eerst van boven naar beneden door. Daarna kun je ze direct herkennen in de twee opdrachten onderaan.</p></div><div class="card-grid">
-<article class="card"><p class="card-number">01 · JAVA VS JAVASCRIPT</p><h3>Statisch versus dynamisch getypeerd</h3><pre class="code-sample"><code>// Java: type staat bij de variabele
+<html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="JavaScript en DOM lesopdrachten"><title>JavaScript & DOM demo</title><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/demo2.css"></head><body>
+<a class="skip-link" href="#hoofdinhoud">Ga naar de inhoud</a><header class="site-header"><div class="container header-inner"><a class="brand" href="index.html"><span>HTML & CSS demonstratie</span></a><nav aria-label="Hoofdnavigatie"><ul class="nav-list"><li><a href="index.html">Home</a></li><li><a href="whoami.html">Who am I</a></li><li><a href="projects.html">Projects</a></li><li><a href="journal.html">Journal</a></li><li><a href="demo.html">Live demo</a></li></ul></nav></div></header>
+<main id="hoofdinhoud" class="container page-main"><header class="page-intro"><p class="eyebrow">Les 3 · JavaScript (ES6+) en de DOM</p><h1>Van HTML naar <span class="accent">interactie.</span></h1><p class="lead">Eerst de belangrijkste begrippen uit de presentatie, daarna twee opdrachten om ze toe te passen.</p></header>
+<section class="lesson-block" aria-labelledby="concepten"><div class="lesson-heading"><div><p class="eyebrow">Eerst · Begrippen uit de presentatie</p><h2 id="concepten">Wat betekenen de lastigere stukken?</h2></div></div><div class="card-grid">
+<article class="card"><p class="card-number">01 · JAVA VS JAVASCRIPT</p><h3>Statisch versus dynamisch getypeerd</h3><pre class="code-sample"><code>// Java
 int age = 25;
-String name = "Marijn";
-
-// JavaScript: type volgt uit de waarde
-let value = 25;      // number
-value = "Hallo";    // string
-value = true;        // boolean</code></pre><p><strong>Java is statically typed</strong>. <strong>JavaScript is dynamically typed</strong>. <code>let</code> en <code>const</code> zijn geen datatypes, maar manieren om variabelen te declareren.</p></article>
-<article class="card"><p class="card-number">02 · CONST, LET & SCOPE</p><h3>Beide hebben block scope</h3><pre class="code-sample"><code>if (true) {
-  let score = 10;
-  const maximum = 100;
-}
-console.log(score);   // ❌ buiten het blok niet beschikbaar
-console.log(maximum); // ❌ buiten het blok niet beschikbaar
-
-let x = 10;
-x = 20; // ✅ opnieuw toewijzen
-
+// JavaScript
+let value = 25;
+value = "Hallo";</code></pre><p>Java is statically typed; JavaScript dynamically typed.</p></article>
+<article class="card"><p class="card-number">02 · CONST, LET & SCOPE</p><h3>Block scope en opnieuw toewijzen</h3><pre class="code-sample"><code>let x = 10;
+x = 20; // mag
 const numbers = [3, 4];
-numbers.push(5); // ✅ dezelfde array aanpassen
-numbers[0] = 10; // ✅ dezelfde array aanpassen
-numbers = [4, 5]; // ❌ const opnieuw toewijzen</code></pre><p><code>let</code> en <code>const</code> hebben allebei <strong>block scope</strong>. Bij <code>let</code> mag je opnieuw toewijzen; bij <code>const</code> niet.</p></article>
-<article class="card"><p class="card-number">03 · ARROW / LAMBDA</p><h3>Dezelfde functie, korter geschreven</h3><pre class="code-sample"><code>function add(a, b) {
-  return a + b;
-}
-add(10, 5); // 15
-
+numbers.push(5); // mag
+numbers = [4, 5]; // fout</code></pre><p><code>let</code> en <code>const</code> hebben block scope. Een const mag niet opnieuw worden toegewezen.</p></article>
+<article class="card"><p class="card-number">03 · ARROW / LAMBDA</p><h3>Een functie korter schrijven</h3><pre class="code-sample"><code>function add(a, b) { return a + b; }
+add(10, 5);
 const addArrow = (a, b) =&gt; a + b;
-addArrow(10, 5); // 15
-
-(a, b) =&gt; a + b; // anonieme arrow function</code></pre><p>Door de arrow function in <code>addArrow</code> te bewaren kun je hem later aanroepen. Als je hem direct als callback gebruikt, hoeft hij geen eigen naam te krijgen.</p></article>
-<article class="card"><p class="card-number">04 · ANONIEME FUNCTIE</p><h3>Een functie zonder naam</h3><pre class="code-sample"><code>button.addEventListener("click", () =&gt; {
+addArrow(10, 5);</code></pre></article>
+<article class="card"><p class="card-number">04 · ANONIEME FUNCTIE</p><pre class="code-sample"><code>button.addEventListener("click", () =&gt; {
   title.textContent = "Hallo!";
-});</code></pre><p>De functie wordt direct meegegeven aan <code>addEventListener</code> en hoeft daarom niet eerst een eigen naam te krijgen.</p></article>
-<article class="card"><p class="card-number">05 · EVENTS, LISTENER & HANDLER</p><h3>De browser merkt gebeurtenissen op</h3><pre class="code-sample"><code>// gebruiker klikt       → click
-// muis gaat ergens over → mouseover
-// toets wordt ingedrukt → keydown
-// tekst wordt ingevoerd → input
-
-function handleClick(event) {
+});</code></pre><p>De anonieme arrow function is hier direct de callback en event handler.</p></article>
+<article class="card"><p class="card-number">05 · EVENTS, LISTENER & HANDLER</p><pre class="code-sample"><code>function handleClick(event) {
   console.log(event.target);
 }
-
-button.addEventListener("click", handleClick);</code></pre><p><strong>Event</strong> = de gebeurtenis. <strong>Listener</strong> = de registratie waarmee je zegt waarop je wilt reageren. <strong>Handler</strong> = de functie die wordt uitgevoerd.</p><p>Lees het als: <em>“Browser, als er op deze button een click plaatsvindt, voer dan handleClick uit.”</em></p><p><strong>De keten:</strong> gebeurtenis → browser maakt event-object → listener reageert → handler wordt aangeroepen → handler krijgt het event-object. <code>event.target</code> is het specifieke DOM-element waarop het event ontstond.</p></article>
-<article class="card"><p class="card-number">06 · FOREACH</p><h3>Doe iets voor elk item</h3><pre class="code-sample"><code>products.forEach((product) =&gt; {
-  console.log(product.naam);
-});</code></pre><p><code>forEach</code> loopt door een array en voert de callback voor ieder item uit.</p></article>
-<article class="card"><p class="card-number">07 · SORT CALLBACK</p><h3>Hoe moet de array sorteren?</h3><pre class="code-sample"><code>products.sort((a, b) =&gt; a.prijs - b.prijs);
-// negatief: a vóór b
-// positief: b vóór a</code></pre><p>De callback bepaalt de volgorde.</p></article>
-<article class="card"><p class="card-number">08 · JSON, OBJECT & COMMUNICATIE</p><h3>JSON is tekst</h3><pre class="code-sample"><code>const json = '{"naam":"Marijn","leeftijd":44}';
-json.naam; // ❌ tekst heeft deze property niet
-
+button.addEventListener("click", handleClick);</code></pre><p>Event = gebeurtenis. Listener = registratie. Handler = functie die wordt uitgevoerd. De browser geeft het event-object aan de handler.</p></article>
+<article class="card"><p class="card-number">06 · FOREACH</p><pre class="code-sample"><code>products.forEach(product =&gt; console.log(product.naam));</code></pre></article>
+<article class="card"><p class="card-number">07 · SORT</p><pre class="code-sample"><code>products.sort((a, b) =&gt; a.prijs - b.prijs); // laag → hoog
+products.sort((a, b) =&gt; b.prijs - a.prijs); // hoog → laag</code></pre></article>
+<article class="card"><p class="card-number">08 · JSON & OBJECT</p><pre class="code-sample"><code>const json = '{"naam":"Marijn"}';
 const persoon = JSON.parse(json);
-persoon.naam; // ✅ "Marijn"
+persoon.naam;</code></pre><p>JSON is tekst. Na <code>JSON.parse()</code> werk je met JavaScript-data.</p></article></div></section>
+<section class="lesson-block"><div class="lesson-heading"><div><p class="eyebrow">Opdracht 01 · DOM-manipulatie</p><h2>Selecteren, aanpassen, maken en verwijderen</h2></div><p>Onderstaande HTML sluit nu letterlijk aan op de selectors uit de opdracht: <code>#title</code> en <code>#description</code>.</p></div><div class="exercise-grid"><article class="demo-panel exercise-demo"><h3 id="demo-title">Original heading</h3><p id="demo-description">Some text.</p><div id="output" class="output-box" aria-live="polite"></div><div class="button-row compact"><button class="control-button" id="run-dom" type="button">Voer opdracht uit</button><button class="control-button secondary-control" id="remove-dom" type="button">Verwijder nieuw element</button><button class="control-button secondary-control" id="reset-dom" type="button">Reset</button></div></article><article class="code-card"><p class="eyebrow">JavaScript uit de opdracht</p><pre class="code-sample"><code>const h1 = document.querySelector("#title");
+const ookH1 = document.getElementById("title");
 
-const terugNaarJson = JSON.stringify(persoon);</code></pre><p>JSON wordt vaak gebruikt voor communicatie. Met <code>JSON.parse()</code> maak je er JavaScript-data van; <code>JSON.stringify()</code> doet het omgekeerde.</p></article>
-</div></section>
-<section class="lesson-block"><div class="lesson-heading"><div><p class="eyebrow">Opdracht 01 · DOM-manipulatie</p><h2>Selecteren, aanpassen, maken en verwijderen</h2></div><p>JavaScript zoekt elementen uit de HTML op. Daarna kan het via de DOM tekst, styling en structuur aanpassen.</p></div><div class="exercise-grid"><article class="demo-panel exercise-demo"><h3 id="demo-title">Original heading</h3><p id="demo-description">Some text.</p><div id="output" class="output-box" aria-live="polite"></div><div class="button-row compact"><button class="control-button" id="run-dom" type="button">Voer opdracht uit</button><button class="control-button secondary-control" id="remove-dom" type="button">Verwijder nieuw element</button><button class="control-button secondary-control" id="reset-dom" type="button">Reset</button></div></article><article class="code-card"><p class="eyebrow">JavaScript</p><pre class="code-sample"><code>const title = document.querySelector("#demo-title");
-const description = document.getElementById("demo-description");
-const output = document.querySelector("#output");
-
-title.textContent = "Hello World!";
-description.innerHTML = "De DOM is &lt;strong&gt;dynamisch&lt;/strong&gt;.";
-title.style.color = "#076d69";
+h1.textContent = "Hello World!";
+h1.innerHTML = "Hello &lt;b&gt;World!&lt;/b&gt;";
+h1.style.color = "red";
 
 const p = document.createElement("p");
-p.textContent = "Dit element is met JavaScript gemaakt.";
-output.appendChild(p);
-p.remove();</code></pre><p class="eyebrow" style="margin-top:1.5rem">Bijbehorende HTML</p><pre class="code-sample"><code>&lt;h3 id="demo-title"&gt;Original heading&lt;/h3&gt;
-&lt;p id="demo-description"&gt;Some text.&lt;/p&gt;
-&lt;div id="output"&gt;&lt;/div&gt;
-&lt;button id="run-dom" type="button"&gt;Voer opdracht uit&lt;/button&gt;</code></pre><p><code>id="demo-title"</code> wordt geselecteerd met <code>querySelector("#demo-title")</code>.</p></article></div></section>
-<section class="lesson-block"><div class="lesson-heading"><div><p class="eyebrow">Opdracht 02 · Productenpagina</p><h2>Data renderen en sorteren</h2></div><p>HTML levert de knoppen en een lege container. JavaScript bevat de data, maakt elementen en reageert op events.</p></div><div class="exercise-grid"><article class="demo-panel exercise-demo"><div class="button-row compact top-row"><button class="control-button" id="sort-price" type="button">Sorteer op prijs</button><button class="control-button secondary-control" id="sort-popularity" type="button">Sorteer op populariteit</button></div><div id="product-list" class="product-grid" aria-live="polite"></div></article><article class="code-card"><p class="eyebrow">JavaScript</p><pre class="code-sample"><code>const products = [
+p.textContent = "Hello!";
+document.body.appendChild(p);
+p.remove();</code></pre><p class="eyebrow" style="margin-top:1.5rem">Bijbehorende HTML uit de opdracht</p><pre class="code-sample"><code>&lt;h1 id="title"&gt;Original heading&lt;/h1&gt;
+&lt;p id="description"&gt;Some text.&lt;/p&gt;</code></pre><p><strong>Belangrijk:</strong> <code>Some text.</code> is de bestaande <code>&lt;p id="description"&gt;</code>. De variabele <code>p</code> in JavaScript verwijst naar een <em>nieuw</em> p-element dat met <code>createElement()</code> wordt gemaakt. Daarom verwijdert <code>p.remove()</code> niet de bestaande “Some text.”.</p></article></div></section>
+<section class="lesson-block"><div class="lesson-heading"><div><p class="eyebrow">Opdracht 02 · Productenpagina</p><h2>Data renderen en sorteren</h2></div></div><div class="exercise-grid"><article class="demo-panel exercise-demo"><div class="button-row compact top-row"><button class="control-button" id="sort-price" type="button">Sorteer op prijs</button><button class="control-button secondary-control" id="sort-popularity" type="button">Sorteer op populariteit</button></div><div id="product-list" class="product-grid"></div></article><article class="code-card"><pre class="code-sample"><code>const products = [
   { naam: "Koffie", prijs: 3.20, populariteit: 92 },
   { naam: "Thee", prijs: 2.80, populariteit: 71 }
 ];
-const productList = document.querySelector("#product-list");
-const sortPrice = document.querySelector("#sort-price");
-function renderProducts(items) {
-  productList.innerHTML = "";
-  items.forEach((product) =&gt; {
-    const card = document.createElement("article");
-    card.className = "product-card";
-    productList.appendChild(card);
-  });
-}
-sortPrice.addEventListener("click", () =&gt; {
-  products.sort((a, b) =&gt; a.prijs - b.prijs);
-  renderProducts(products);
-});</code></pre><p class="eyebrow" style="margin-top:1.5rem">Bijbehorende HTML</p><pre class="code-sample"><code>&lt;button id="sort-price" type="button"&gt;Sorteer op prijs&lt;/button&gt;
-&lt;button id="sort-popularity" type="button"&gt;Sorteer op populariteit&lt;/button&gt;
-&lt;div id="product-list"&gt;&lt;/div&gt;
-&lt;script src="js/demo2.js" defer&gt;&lt;/script&gt;</code></pre><p><strong>Route:</strong> HTML → selector → event → functie → DOM aanpassen.</p></article></div></section>
-<section class="dark-callout"><p class="eyebrow">Kern van de les</p><h2>Eerst begrijpen, daarna toepassen.</h2><p>Bovenaan staan de begrippen uit de presentatie. Onderaan gebruik je ze in de DOM- en productenopdracht.</p></section></main><footer class="site-footer"><div class="container footer-inner"><p>Gemaakt door Marijn Kampers</p><p><strong>JavaScript & DOM demonstratie</strong><br>Leren door te bouwen</p><p>Lesmateriaal · <span data-current-year>2026</span></p></div></footer><script src="js/site.js" defer></script><script src="js/demo2.js" defer></script></body></html>
+
+products.forEach(product =&gt; {
+  // maak per product een DOM-element
+});
+
+products.sort((a, b) =&gt; a.prijs - b.prijs);</code></pre><p class="eyebrow" style="margin-top:1.5rem">Bijbehorende HTML</p><pre class="code-sample"><code>&lt;button id="sort-price"&gt;Sorteer op prijs&lt;/button&gt;
+&lt;button id="sort-popularity"&gt;Sorteer op populariteit&lt;/button&gt;
+&lt;div id="product-list"&gt;&lt;/div&gt;</code></pre></article></div></section>
+</main><footer class="site-footer"><div class="container footer-inner"><p>Gemaakt door Marijn Kampers</p><p>JavaScript & DOM demonstratie</p></div></footer><script src="js/site.js" defer></script><script src="js/demo2.js" defer></script></body></html>
